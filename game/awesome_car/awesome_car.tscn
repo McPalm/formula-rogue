@@ -2,19 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dowegdgsahh22" path="res://game/awesome_car/awesome_car.gd" id="1_ig06s"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_77knn"]
-size = Vector3(2, 1, 4)
-
 [sub_resource type="BoxMesh" id="BoxMesh_ig06s"]
 size = Vector3(2, 1, 4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mbcx5"]
 
-[node name="AwesomeCar" type="CharacterBody3D"]
-script = ExtResource("1_ig06s")
+[sub_resource type="SphereShape3D" id="SphereShape3D_ghkvk"]
+radius = 1.1204721
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_77knn")
+[node name="AwesomeCar" type="Node3D"]
+script = ExtResource("1_ig06s")
+acceleration = 50.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ig06s")
@@ -22,3 +20,13 @@ mesh = SubResource("BoxMesh_ig06s")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518662, 0)
 mesh = SubResource("BoxMesh_mbcx5")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+physics_interpolation_mode = 1
+top_level = true
+can_sleep = false
+linear_damp = 1.0
+angular_damp = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_ghkvk")

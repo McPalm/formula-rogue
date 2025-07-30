@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://r6da64mw7ypw"]
+[gd_scene load_steps=8 format=3 uid="uid://r6da64mw7ypw"]
 
 [ext_resource type="PackedScene" uid="uid://bb6brj2g75xu7" path="res://game/awesome_car/awesome_car.tscn" id="1_co24e"]
 [ext_resource type="Texture2D" uid="uid://br7l0hg2o252n" path="res://test/icon.svg" id="2_feb8i"]
@@ -14,16 +14,25 @@ size = Vector2(1000, 1000)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_jn4p2"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_yfehe"]
+font_size = 30
+
+[sub_resource type="GDScript" id="GDScript_yfehe"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	text = \"%d km/h\" % ($\"../../AwesomeCar\".speed * 3.6)
+	
+"
+
 [node name="Testing" type="Node3D"]
-
-[node name="AwesomeCar" parent="." instance=ExtResource("1_co24e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2295687, 0)
-
-[node name="CameraPivot" type="Node3D" parent="AwesomeCar"]
-transform = Transform3D(1, 0, 0, 0, 0.92730147, 0.3743153, 0, -0.3743153, 0.92730147, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="AwesomeCar/CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.9848077, -0.17364818, 0, 0.17364818, 0.9848077, 0, 0, 10)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_lc7k4")
@@ -37,3 +46,28 @@ shape = SubResource("WorldBoundaryShape3D_jn4p2")
 transform = Transform3D(0.6523233, 0.47845626, -0.5878383, 0, 0.77557284, 0.6312581, 0.7579408, -0.41178435, 0.5059242, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="AwesomeCar" parent="." instance=ExtResource("1_co24e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15702057, 0.5, -3.2108502)
+turn_speed = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="AwesomeCar"]
+transform = Transform3D(1, 0, 0, 0, 0.9890159, 0.1478094, 0, -0.1478094, 0.9890159, 0, 3.619, 7.415)
+fov = 90.6
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Speedometer" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0 km/h"
+label_settings = SubResource("LabelSettings_yfehe")
+script = SubResource("GDScript_yfehe")
