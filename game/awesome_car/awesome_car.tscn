@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bb6brj2g75xu7"]
+[gd_scene load_steps=9 format=3 uid="uid://bb6brj2g75xu7"]
 
 [ext_resource type="Script" uid="uid://dowegdgsahh22" path="res://game/awesome_car/awesome_car.gd" id="1_ig06s"]
 
@@ -7,12 +7,35 @@ size = Vector3(2, 1, 4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mbcx5"]
 
+[sub_resource type="Curve" id="Curve_ghkvk"]
+_data = [Vector2(0, 0), 0.0, 2.85643, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_afpqb"]
+curve = SubResource("Curve_ghkvk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qqaaj"]
+inherit_velocity_ratio = 0.8
+direction = Vector3(0, 1, 0)
+spread = 13.889
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_afpqb")
+
+[sub_resource type="SphereMesh" id="SphereMesh_nkyxg"]
+radius = 0.3
+height = 0.6
+radial_segments = 4
+rings = 6
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_ghkvk"]
 radius = 1.1204721
 
 [node name="AwesomeCar" type="Node3D"]
 script = ExtResource("1_ig06s")
 acceleration = 50.0
+turn_speed = 7.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ig06s")
@@ -21,10 +44,46 @@ mesh = SubResource("BoxMesh_ig06s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518662, 0)
 mesh = SubResource("BoxMesh_mbcx5")
 
+[node name="right_rear_particle" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8103864, -0.5968915, 1.4823562)
+emitting = false
+amount = 256
+lifetime = 0.2
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qqaaj")
+draw_pass_1 = SubResource("SphereMesh_nkyxg")
+
+[node name="left_rear_particle" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7667849, -0.5968915, 1.5460804)
+emitting = false
+amount = 256
+lifetime = 0.2
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qqaaj")
+draw_pass_1 = SubResource("SphereMesh_nkyxg")
+
+[node name="left_front_particle" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78271604, -0.5968915, -1.3852289)
+emitting = false
+amount = 256
+lifetime = 0.2
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qqaaj")
+draw_pass_1 = SubResource("SphereMesh_nkyxg")
+
+[node name="right_front_particle" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8103864, -0.5968915, -1.2896428)
+emitting = false
+amount = 256
+lifetime = 0.2
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qqaaj")
+draw_pass_1 = SubResource("SphereMesh_nkyxg")
+
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 physics_interpolation_mode = 1
+gravity_scale = 2.0
 can_sleep = false
-linear_damp = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("SphereShape3D_ghkvk")
