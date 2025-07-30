@@ -12,14 +12,17 @@ extends Node3D
 var drift = 0.0
 var speed = 0.0
 
+func _ready() -> void:
+	body.top_level = true
+
 func _physics_process(_delta: float) -> void:
 	global_position = body.global_position
 	var input_force = Input.get_axis("break", "accelerate") * acceleration
-	body.apply_central_force(model.global_basis * Vector3.FORWARD * input_force)
+	body.apply_central_force(	global_basis * Vector3.FORWARD * input_force)
 	var relative_velocity = body.linear_velocity * global_basis
 	drift = relative_velocity.x
 	speed = -relative_velocity.z
-	body.apply_central_force(model.global_basis * Vector3.LEFT * drift * grip)
+	body.apply_central_force(global_basis * Vector3.LEFT * drift * grip)
 	if body.linear_velocity.length_squared() > .5:
 		_rotate_car(_delta)
 

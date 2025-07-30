@@ -23,10 +23,8 @@ mesh = SubResource("BoxMesh_mbcx5")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 physics_interpolation_mode = 1
-top_level = true
 can_sleep = false
 linear_damp = 1.0
-angular_damp = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("SphereShape3D_ghkvk")
