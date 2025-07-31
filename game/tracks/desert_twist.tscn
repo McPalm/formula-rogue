@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://evfqxuco6k56"]
+[gd_scene load_steps=7 format=3 uid="uid://evfqxuco6k56"]
 
 [ext_resource type="PackedScene" uid="uid://dxrujqibp6t4i" path="res://game/tracks/teststage01.blend" id="1_ckpnf"]
 [ext_resource type="PackedScene" uid="uid://bb6brj2g75xu7" path="res://game/awesome_car/awesome_car.tscn" id="2_6btoe"]
 [ext_resource type="Script" uid="uid://bx46sgnh2rkgb" path="res://game/camera.gd" id="3_islmj"]
+[ext_resource type="Script" uid="uid://3iwkqiq8jj7g" path="res://game/tracks/path.gd" id="4_5ffq3"]
+[ext_resource type="PackedScene" uid="uid://8nxubar8vsgi" path="res://game/tracks/checkpoint.tscn" id="4_dww8t"]
 
 [sub_resource type="Environment" id="Environment_6btoe"]
 ambient_light_source = 2
@@ -37,3 +39,93 @@ car = NodePath("..")
 
 [node name="CameraFocus" type="Node3D" parent="AwesomeCar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0532112, 0)
+
+[node name="Path" type="Node3D" parent="."]
+script = ExtResource("4_5ffq3")
+
+[node name="checkpoint" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.4216, -99.732376, -32.467884)
+
+[node name="checkpoint2" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.225899, -97.01016, -69.4053)
+
+[node name="checkpoint3" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.558746, -88.798874, -98.48798)
+
+[node name="checkpoint4" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.016453, -79.00416, -117.08035)
+
+[node name="checkpoint5" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.81075, -68.44459, -126.57166)
+
+[node name="checkpoint6" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150.6749, -53.551846, -118.33676)
+
+[node name="checkpoint7" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -202.57211, -43.8042, -96.23751)
+
+[node name="checkpoint8" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -238.1598, -37.825226, -65.45623)
+
+[node name="checkpoint9" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -266.32114, -28.702734, -24.24993)
+
+[node name="checkpoint10" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -278.01495, -21.462467, 29.975214)
+
+[node name="checkpoint11" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -272.92566, -16.649462, 83.64689)
+
+[node name="checkpoint12" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -253.27916, -14.044534, 132.07933)
+
+[node name="checkpoint13" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -218.58105, -12.34708, 167.52908)
+
+[node name="checkpoint14" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -174.75653, -5.9957414, 183.11656)
+
+[node name="checkpoint15" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.20288, 6.2141895, 169.58911)
+
+[node name="checkpoint16" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.65742, 14.878161, 131.00516)
+
+[node name="checkpoint17" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.274616, 22.783909, 76.26351)
+
+[node name="checkpoint18" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4162407, 27.134525, 10.446573)
+
+[node name="checkpoint19" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.84028, 26.645727, -58.392742)
+
+[node name="checkpoint20" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.99899, 25.038158, -102.794815)
+
+[node name="checkpoint21" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.11997, 21.53237, -142.41032)
+
+[node name="checkpoint22" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 161.16704, 17.40399, -162.8987)
+
+[node name="checkpoint23" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 220.33205, 11.139074, -135.17374)
+
+[node name="checkpoint24" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 247.4261, 11.49596, -88.099915)
+
+[node name="checkpoint25" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 245.8655, 10.129717, -16.249897)
+
+[node name="checkpoint26" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 213.48097, -2.9822643, 61.292336)
+
+[node name="checkpoint27" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.84488, -20.21208, 101.6857)
+
+[node name="checkpoint28" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.76151, -44.845745, 95.56693)
+
+[node name="checkpoint29" parent="Path" instance=ExtResource("4_dww8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.35471, -78.50317, 56.73687)
