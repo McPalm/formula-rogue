@@ -39,6 +39,11 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
+"Cactus": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://game/materials/cactus.tres",
+"use_external/path": "uid://cx10xi4tmlup7"
+},
 "Road": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://game/materials/road.tres",
@@ -51,8 +56,10 @@ _subresources={
 }
 },
 "nodes": {
-"PATH:Road": {
-"generate/physics": true
+"PATH:Roadcol": {
+"generate/physics": true,
+"mesh_instance/cast_shadow": 0,
+"mesh_instance/layers": 0
 },
 "PATH:Roadwalls": {
 "generate/physics": true
