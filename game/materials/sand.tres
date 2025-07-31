@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://s0xlknwbpwp7"]
+
+[ext_resource type="Shader" uid="uid://dq0i3yo2bay43" path="res://game/materials/shaders/VertColorInterp.tres" id="1_7bk3t"]
+[ext_resource type="Texture2D" uid="uid://bknyu7jnfhl7n" path="res://game/textures/sandstonecracky.png" id="2_p1abd"]
+[ext_resource type="Texture2D" uid="uid://b3ilmw0epat1b" path="res://game/textures/grassy.png" id="3_lyqc3"]
+[ext_resource type="Texture2D" uid="uid://d3khgo3vww5ax" path="res://game/textures/sandsmooth.png" id="3_tlxjo"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7bk3t")
+shader_parameter/Texture_Base = ExtResource("2_p1abd")
+shader_parameter/Texture_Red = ExtResource("3_tlxjo")
+shader_parameter/Texture_Green = ExtResource("3_lyqc3")

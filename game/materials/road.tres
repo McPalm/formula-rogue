@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://csrhi64gc3ba2"]
+
+[ext_resource type="Shader" uid="uid://b04lsg2k78js1" path="res://game/materials/shaders/unlit.tres" id="1_laltu"]
+[ext_resource type="Texture2D" uid="uid://by004qjpqydpc" path="res://game/textures/road.png" id="2_dluq8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_laltu")
+shader_parameter/Texture_Base = ExtResource("2_dluq8")
