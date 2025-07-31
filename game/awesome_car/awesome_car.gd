@@ -66,6 +66,8 @@ func align_with_y(xform, new_y):
 
 func _rotate_car(_delta:float) -> void:
 	var turn_axis = Input.get_axis("left", "right")
+	if not grounded:
+		set_tire_angle(-turn_axis * 0.3)
 	if Input.is_action_pressed("break"):
 		turn_axis *= 2.0
 		turn_axis += drift / 40.0
@@ -73,6 +75,7 @@ func _rotate_car(_delta:float) -> void:
 		turn_axis = drift / 10.0
 	if grounded:
 		turn_input = move_toward(turn_input, turn_axis, _delta * 10.0)
+		set_tire_angle(-turn_input * 0.3)
 	## Turn based on input
 	var new_basis = global_basis.rotated(global_transform.basis.y, -turn_input)
 	var turn_cap = speed / 10.0
@@ -93,3 +96,7 @@ func _rotate_car(_delta:float) -> void:
 		$MeshInstance3D/right_rear_particle.emitting = false
 		$MeshInstance3D/left_front_particle.emitting = false
 		$MeshInstance3D/left_rear_particle.emitting = false
+
+func set_tire_angle(_angle:float) -> void:
+	model.get_node("rally_car_01/car_body/wheel_front_left").rotation.z = _angle
+	model.get_node("rally_car_01/car_body/wheel_front_right").rotation.z = _angle

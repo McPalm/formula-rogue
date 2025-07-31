@@ -26,6 +26,7 @@ radial_segments = 4
 rings = 6
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ghkvk"]
+friction = 0.0
 bounce = 1.0
 absorbent = true
 
@@ -78,7 +79,6 @@ draw_pass_1 = SubResource("SphereMesh_nkyxg")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 physics_interpolation_mode = 1
-collision_layer = 0
 physics_material_override = SubResource("PhysicsMaterial_ghkvk")
 gravity_scale = 2.0
 can_sleep = false
