@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bb6brj2g75xu7"]
+[gd_scene load_steps=10 format=3 uid="uid://bb6brj2g75xu7"]
 
 [ext_resource type="Script" uid="uid://dowegdgsahh22" path="res://game/awesome_car/awesome_car.gd" id="1_ig06s"]
 
@@ -28,6 +28,10 @@ radius = 0.3
 height = 0.6
 radial_segments = 4
 rings = 6
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ghkvk"]
+bounce = 1.0
+absorbent = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ghkvk"]
 radius = 1.1204721
@@ -82,8 +86,32 @@ draw_pass_1 = SubResource("SphereMesh_nkyxg")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 physics_interpolation_mode = 1
+collision_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_ghkvk")
 gravity_scale = 2.0
 can_sleep = false
+continuous_cd = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("SphereShape3D_ghkvk")
+debug_color = Color(0, 2.0493379, 2.3849072, 1)
+
+[node name="GroundCheck" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, -1.0503919, -1.9844214)
+debug_shape_custom_color = Color(0.06469653, 0.06469653, 0.06469653, 1)
+debug_shape_thickness = 5
+
+[node name="GroundCheck2" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02180767, -1.0503919, -0.7087218)
+debug_shape_custom_color = Color(0.06469653, 0.06469653, 0.06469653, 1)
+debug_shape_thickness = 5
+
+[node name="GroundCheck3" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010903358, -1.0503919, 0.40342623)
+debug_shape_custom_color = Color(0.06469653, 0.06469653, 0.06469653, 1)
+debug_shape_thickness = 5
+
+[node name="GroundCheck4" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7683716e-07, -1.0503919, 1.9953252)
+debug_shape_custom_color = Color(0.06469653, 0.06469653, 0.06469653, 1)
+debug_shape_thickness = 5

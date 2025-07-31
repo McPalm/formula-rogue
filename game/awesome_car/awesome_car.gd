@@ -35,6 +35,29 @@ func _physics_process(_delta: float) -> void:
 	#body.apply_central_force(global_basis * Vector3.FORWARD * abs(drift) * current_grip * 0.1)
 	if body.linear_velocity.length_squared() > .5:
 		_rotate_car(_delta)
+	_face_ground_probably(_delta)
+	## downwards force
+	body.apply_force(global_basis * Vector3.DOWN * speed * 0.1)
+	
+func _face_ground_probably(_delta:float) -> void:
+	var normal = Vector3.ZERO
+	var hits = 0
+	for ray in [$GroundCheck, $GroundCheck2, $GroundCheck3, $GroundCheck4]:
+		if ray.is_colliding():
+			hits += 1
+			normal += ray.get_collision_normal()
+	if hits > 0:
+		var n = normal / hits
+		var target_transform = align_with_y(global_transform, n)
+		global_transform = global_transform.interpolate_with(target_transform, 0.25)
+
+## https://kidscancode.org/godot_recipes/3.x/3d/3d_align_surface/
+func align_with_y(xform, new_y):
+	xform.basis.y = new_y
+	xform.basis.x = -xform.basis.z.cross(new_y)
+	xform.basis = xform.basis.orthonormalized()
+	return xform
+
 
 func _rotate_car(_delta:float) -> void:
 	var turn_axis = Input.get_axis("left", "right")

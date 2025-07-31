@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://dahe35egeb7wu"]
+
+[ext_resource type="Texture2D" uid="uid://br7l0hg2o252n" path="res://test/icon.svg" id="1_lkfco"]
+[ext_resource type="PackedScene" uid="uid://bb6brj2g75xu7" path="res://game/awesome_car/awesome_car.tscn" id="2_j3ryf"]
+[ext_resource type="PackedScene" uid="uid://dxrujqibp6t4i" path="res://game/tracks/teststage01.blend" id="2_jmw56"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kj3p2"]
+shading_mode = 0
+albedo_texture = ExtResource("1_lkfco")
+uv1_scale = Vector3(64, 64, 64)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lc7k4"]
+material = SubResource("StandardMaterial3D_kj3p2")
+size = Vector2(1000, 1000)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_jn4p2"]
+
+[sub_resource type="Environment" id="Environment_yfehe"]
+ambient_light_source = 2
+ambient_light_color = Color(0.54977655, 0.42684013, 0.67118204, 1)
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.43150324, 0.6585047, 0.88220966, 1)
+fog_density = 1.0
+fog_depth_begin = 100.0
+fog_depth_end = 500.0
+
+[sub_resource type="GDScript" id="GDScript_6hi1x"]
+script/source = "extends Camera3D
+
+@onready var car:Node3D = $\"..\"
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	fov = lerpf(60, 90, car.speed / car.top_speed)
+	position.x = car.drift / -7.0
+	look_at(car.global_position, car.global_basis.y)
+	
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_yfehe"]
+font_size = 30
+
+[sub_resource type="GDScript" id="GDScript_yfehe"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	text = \"%d km/h\" % ($\"../../AwesomeCar\".speed * 3.6)
+	
+"
+
+[node name="Testing" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_lc7k4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_jn4p2")
+
+[node name="teststage01" parent="." instance=ExtResource("2_jmw56")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 116.76141, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.6523233, 0.47845626, -0.5878383, 0, 0.77557284, 0.6312581, 0.7579408, -0.41178435, 0.5059242, 0, 0, 0)
+light_color = Color(0.90063506, 0.86964834, 0.64904857, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yfehe")
+
+[node name="AwesomeCar" parent="." instance=ExtResource("2_j3ryf")]
+transform = Transform3D(0.9027205, 0, 0.43022752, 0, 1, 0, -0.43022752, 0, 0.9027205, 32.82436, 21.786654, -7.00799)
+top_speed = 80.0
+turn_speed = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="AwesomeCar"]
+transform = Transform3D(1, 0, 0, 0, 0.9890159, 0.1478094, 0, -0.1478094, 0.9890159, 0, 3.619, 7.415)
+fov = 90.6
+script = SubResource("GDScript_6hi1x")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Speedometer" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0 km/h"
+label_settings = SubResource("LabelSettings_yfehe")
+script = SubResource("GDScript_yfehe")
