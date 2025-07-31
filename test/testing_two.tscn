@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://br7l0hg2o252n" path="res://test/icon.svg" id="1_lkfco"]
 [ext_resource type="PackedScene" uid="uid://bb6brj2g75xu7" path="res://game/awesome_car/awesome_car.tscn" id="2_j3ryf"]
 [ext_resource type="PackedScene" uid="uid://dxrujqibp6t4i" path="res://game/tracks/teststage01.blend" id="2_jmw56"]
+[ext_resource type="Script" uid="uid://bx46sgnh2rkgb" path="res://game/camera.gd" id="4_jmw56"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kj3p2"]
 shading_mode = 0
@@ -24,21 +25,6 @@ fog_light_color = Color(0.43150324, 0.6585047, 0.88220966, 1)
 fog_density = 1.0
 fog_depth_begin = 100.0
 fog_depth_end = 500.0
-
-[sub_resource type="GDScript" id="GDScript_6hi1x"]
-script/source = "extends Camera3D
-
-@onready var car:Node3D = $\"..\"
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	fov = lerpf(60, 90, car.speed / car.top_speed)
-	position.x = car.drift / -7.0
-	look_at(car.global_position, car.global_basis.y)
-	
-"
 
 [sub_resource type="LabelSettings" id="LabelSettings_yfehe"]
 font_size = 30
@@ -80,13 +66,16 @@ environment = SubResource("Environment_yfehe")
 
 [node name="AwesomeCar" parent="." instance=ExtResource("2_j3ryf")]
 transform = Transform3D(0.9027205, 0, 0.43022752, 0, 1, 0, -0.43022752, 0, 0.9027205, 32.82436, 21.786654, -7.00799)
-top_speed = 80.0
-turn_speed = 1.0
 
-[node name="Camera3D" type="Camera3D" parent="AwesomeCar"]
+[node name="Camera3D" type="Camera3D" parent="AwesomeCar" node_paths=PackedStringArray("focus", "car")]
 transform = Transform3D(1, 0, 0, 0, 0.9890159, 0.1478094, 0, -0.1478094, 0.9890159, 0, 3.619, 7.415)
 fov = 90.6
-script = SubResource("GDScript_6hi1x")
+script = ExtResource("4_jmw56")
+focus = NodePath("../Node3D")
+car = NodePath("..")
+
+[node name="Node3D" type="Node3D" parent="AwesomeCar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0532112, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

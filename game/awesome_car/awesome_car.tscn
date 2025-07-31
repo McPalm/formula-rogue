@@ -1,11 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb6brj2g75xu7"]
+[gd_scene load_steps=9 format=3 uid="uid://bb6brj2g75xu7"]
 
 [ext_resource type="Script" uid="uid://dowegdgsahh22" path="res://game/awesome_car/awesome_car.gd" id="1_ig06s"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_ig06s"]
-size = Vector3(2, 1, 4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_mbcx5"]
+[ext_resource type="PackedScene" uid="uid://ciqtkdaeue03k" path="res://game/awesome_car/rally_car_01.fbx" id="2_afpqb"]
 
 [sub_resource type="Curve" id="Curve_ghkvk"]
 _data = [Vector2(0, 0), 0.0, 2.85643, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -38,15 +34,11 @@ radius = 1.1204721
 
 [node name="AwesomeCar" type="Node3D"]
 script = ExtResource("1_ig06s")
-acceleration = 50.0
-turn_speed = 7.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_ig06s")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518662, 0)
-mesh = SubResource("BoxMesh_mbcx5")
+[node name="rally_car_01" parent="MeshInstance3D" instance=ExtResource("2_afpqb")]
+transform = Transform3D(-2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, -2.9802322e-08, 0, 0, 0)
 
 [node name="right_rear_particle" type="GPUParticles3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8103864, -0.5968915, 1.4823562)
