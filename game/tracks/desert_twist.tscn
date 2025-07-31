@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dxrujqibp6t4i" path="res://game/tracks/teststage01.blend" id="1_ckpnf"]
 [ext_resource type="PackedScene" uid="uid://bb6brj2g75xu7" path="res://game/awesome_car/awesome_car.tscn" id="2_6btoe"]
 [ext_resource type="Script" uid="uid://bx46sgnh2rkgb" path="res://game/camera.gd" id="3_islmj"]
-[ext_resource type="Script" uid="uid://3iwkqiq8jj7g" path="res://game/tracks/path.gd" id="4_5ffq3"]
-[ext_resource type="PackedScene" uid="uid://8nxubar8vsgi" path="res://game/tracks/checkpoint.tscn" id="4_dww8t"]
+[ext_resource type="Script" path="res://game/tracks/path.gd" id="4_5ffq3"]
+[ext_resource type="PackedScene" path="res://game/tracks/checkpoint.tscn" id="4_dww8t"]
 
 [sub_resource type="Environment" id="Environment_6btoe"]
 ambient_light_source = 2
