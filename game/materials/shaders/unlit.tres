@@ -7,12 +7,13 @@ source = 5
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_3k5f4"]
 parameter_name = "Texture_Base"
+texture_filter = 1
 
 [resource]
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
 
-uniform sampler2D Texture_Base;
+uniform sampler2D Texture_Base : filter_nearest;
 
 
 

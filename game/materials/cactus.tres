@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cx10xi4tmlup7"]
+
+[ext_resource type="Shader" uid="uid://b04lsg2k78js1" path="res://game/materials/shaders/unlit.tres" id="1_q6c55"]
+[ext_resource type="Texture2D" uid="uid://c2hcua0uxjgo5" path="res://game/textures/cactus.png" id="2_q6c55"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_q6c55")
+shader_parameter/Texture_Base = ExtResource("2_q6c55")
