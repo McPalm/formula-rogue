@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://evfqxuco6k56"]
+
+[ext_resource type="PackedScene" uid="uid://dxrujqibp6t4i" path="res://game/tracks/teststage01.blend" id="1_ckpnf"]
+[ext_resource type="PackedScene" uid="uid://bb6brj2g75xu7" path="res://game/awesome_car/awesome_car.tscn" id="2_6btoe"]
+[ext_resource type="Script" uid="uid://bx46sgnh2rkgb" path="res://game/camera.gd" id="3_islmj"]
+
+[sub_resource type="Environment" id="Environment_6btoe"]
+ambient_light_source = 2
+ambient_light_color = Color(0.54977655, 0.42684013, 0.67118204, 1)
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.43150324, 0.6585047, 0.88220966, 1)
+fog_density = 1.0
+fog_depth_begin = 100.0
+fog_depth_end = 500.0
+
+[node name="DesertTwist" type="Node3D"]
+
+[node name="teststage01" parent="." instance=ExtResource("1_ckpnf")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6btoe")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.6523233, 0.47845626, -0.5878383, 0, 0.77557284, 0.6312581, 0.7579408, -0.41178435, 0.5059242, 0, 0, 0)
+light_color = Color(0.90063506, 0.86964834, 0.64904857, 1)
+
+[node name="AwesomeCar" parent="." instance=ExtResource("2_6btoe")]
+transform = Transform3D(0.88352865, 0, 0.46837708, 0, 1, 0, -0.46837708, 0, 0.88352865, 48.755436, -93.08119, -1.4986138)
+
+[node name="Camera3D" type="Camera3D" parent="AwesomeCar" node_paths=PackedStringArray("focus", "car")]
+transform = Transform3D(1, 0, 0, 0, 0.9890159, 0.1478094, 0, -0.1478094, 0.9890159, 0, 3.619, 7.415)
+fov = 90.6
+script = ExtResource("3_islmj")
+focus = NodePath("../CameraFocus")
+car = NodePath("..")
+
+[node name="CameraFocus" type="Node3D" parent="AwesomeCar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0532112, 0)
