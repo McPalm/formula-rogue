@@ -9,7 +9,7 @@ extends Node3D
 @export var acceleration:float = 50.0
 @export var turn_speed:float = 1.0
 @export var grip = 3.0
-
+@export var downforceMultiplier:float = 0.1
 
 var drift = 0.0
 var speed = 0.0
@@ -41,7 +41,7 @@ func _physics_process(_delta: float) -> void:
 	if body.linear_velocity.length_squared() > .5:
 		_rotate_car(_delta)
 	## downwards force
-	body.apply_force(global_basis * Vector3.DOWN * speed * 0.1)
+	body.apply_force(global_basis * Vector3.DOWN * speed * downforceMultiplier)
 	
 func _face_ground_probably(_delta:float) -> void:
 	var normal = Vector3.ZERO
@@ -98,5 +98,5 @@ func _rotate_car(_delta:float) -> void:
 		$MeshInstance3D/left_rear_particle.emitting = false
 
 func set_tire_angle(_angle:float) -> void:
-	model.get_node("rally_car_01/car_body/wheel_front_left").rotation.z = _angle
-	model.get_node("rally_car_01/car_body/wheel_front_right").rotation.z = _angle
+	model.get_node("rally_car_02/car_body/wheel_front_left").rotation.z = _angle
+	model.get_node("rally_car_02/car_body/wheel_front_right").rotation.z = _angle
