@@ -1,11 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://rmbpgopfknfy"]
+[gd_scene load_steps=8 format=3 uid="uid://rmbpgopfknfy"]
 
+[ext_resource type="Script" uid="uid://c47hyk8bk42yr" path="res://game/game.gd" id="1_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://c7id1mexeggw6" path="res://game/tracks/desert_spire.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://bb6brj2g75xu7" path="res://game/awesome_car/awesome_car.tscn" id="1_l1rk1"]
 [ext_resource type="Script" uid="uid://bx46sgnh2rkgb" path="res://game/camera.gd" id="3_4fuuu"]
 [ext_resource type="AudioStream" uid="uid://ceuvajuir7pwr" path="res://RACING GAME SFX/OST/gameplayloop.mp3" id="4_4fuuu"]
 
+[sub_resource type="GDScript" id="GDScript_dakft"]
+script/source = "extends Control
+
+func _ready() -> void:
+	$\"../..\".lap_finished.connect(_lap_finished)
+	
+
+func _lap_finished(next_lap:int) -> void:
+	$LapCounter.text = \"Lap %d\" % (next_lap + 1)
+	var new_lap:Label = $\"Control/New Lap!\"
+	new_lap.text = \"Lap %d\" % (next_lap + 1)
+	$\"Control\".position.x = size.x
+	new_lap.modulate = Color.TRANSPARENT
+	new_lap.show()
+	var tweener = create_tween().set_parallel()
+	tweener.tween_property(new_lap, \"modulate\", Color.WHITE, 0.5)
+	tweener.tween_property($\"Control\", \"position\", size/2, 0.5)
+	await get_tree().create_timer(1.0).timeout
+	tweener = create_tween().set_parallel()
+	tweener.tween_property(new_lap, \"modulate\", Color.TRANSPARENT, 0.5)
+	tweener.tween_property($\"Control\", \"position\", Vector2(0, size.y/2), 0.5)
+	await tweener.finished
+	new_lap.hide()
+	
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_dxrkv"]
+font_size = 30
+shadow_size = 7
+shadow_color = Color(0.24313726, 0, 0.3254902, 1)
+
 [node name="Game" type="Node3D"]
+script = ExtResource("1_dxrkv")
 
 [node name="Stage" parent="." instance=ExtResource("1_h7iqs")]
 
@@ -28,3 +61,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0532112, 0)
 stream = ExtResource("4_4fuuu")
 autoplay = true
 bus = &"Music"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Lap" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_dakft")
+
+[node name="LapCounter" type="Label" parent="UI/Lap"]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 129.0
+offset_bottom = 66.0
+text = "Lap 1"
+label_settings = SubResource("LabelSettings_dxrkv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="UI/Lap"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="New Lap!" type="Label" parent="UI/Lap/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -73.0
+offset_right = 1.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "Lap 1"
+label_settings = SubResource("LabelSettings_dxrkv")
+horizontal_alignment = 1
+vertical_alignment = 1
