@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7id1mexeggw6"]
+[gd_scene load_steps=3 format=3 uid="uid://c7id1mexeggw6"]
 
 [ext_resource type="PackedScene" uid="uid://dw0u6usslor44" path="res://game/tracks/stage02_spire.blend" id="1_50xwo"]
-[ext_resource type="PackedScene" uid="uid://deo6hesje7yqp" path="res://game/more_awesome_car/player_car.tscn" id="2_o8h13"]
 
 [sub_resource type="Environment" id="Environment_1f1nd"]
 ambient_light_source = 2
@@ -23,6 +22,3 @@ environment = SubResource("Environment_1f1nd")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.652323, 0.478456, -0.587838, 0, 0.775573, 0.631258, 0.757941, -0.411784, 0.505924, 0, 0, 0)
 light_color = Color(0.900635, 0.869648, 0.649049, 1)
-
-[node name="rally_car_01" parent="." instance=ExtResource("2_o8h13")]
-transform = Transform3D(-0.0498086, 0, -0.998759, 0, 1, 0, 0.998759, 0, -0.0498086, 226.318, -6.46978, 34.2899)
