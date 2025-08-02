@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://rmbpgopfknfy"]
+
+[ext_resource type="PackedScene" uid="uid://c7id1mexeggw6" path="res://game/tracks/desert_spire.tscn" id="1_h7iqs"]
+[ext_resource type="PackedScene" uid="uid://bb6brj2g75xu7" path="res://game/awesome_car/awesome_car.tscn" id="1_l1rk1"]
+[ext_resource type="Script" uid="uid://bx46sgnh2rkgb" path="res://game/camera.gd" id="3_4fuuu"]
+[ext_resource type="AudioStream" uid="uid://ceuvajuir7pwr" path="res://RACING GAME SFX/OST/gameplayloop.mp3" id="4_4fuuu"]
+
+[node name="Game" type="Node3D"]
+
+[node name="Stage" parent="." instance=ExtResource("1_h7iqs")]
+
+[node name="AwesomeCar" parent="." instance=ExtResource("1_l1rk1")]
+transform = Transform3D(0.7964455, 0, 0.6047103, 0, 1, 0, -0.6047103, 0, 0.7964455, 34.856213, 13.891554, -15.678923)
+
+[node name="Camera3D" type="Node3D" parent="AwesomeCar" node_paths=PackedStringArray("focus", "car", "camera")]
+transform = Transform3D(1, 0, 0, 0, 0.9890159, 0.1478094, 0, -0.1478094, 0.9890159, 0, 3.619, 7.415)
+script = ExtResource("3_4fuuu")
+focus = NodePath("../Node3D")
+car = NodePath("..")
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="AwesomeCar/Camera3D"]
+
+[node name="Node3D" type="Node3D" parent="AwesomeCar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0532112, 0)
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4fuuu")
+autoplay = true
+bus = &"Music"

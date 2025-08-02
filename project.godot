@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="formula rogue"
-run/main_scene="res://test/testing.tscn"
+run/main_scene="uid://rmbpgopfknfy"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://test/icon.svg"
 

@@ -15,7 +15,7 @@ var drift = 0.0
 var speed = 0.0
 var grounded:bool = false
 var turn_input:float = 0.0
-
+var burning_tire:bool = false
 
 func _ready() -> void:
 	body.top_level = true
@@ -41,7 +41,7 @@ func _physics_process(_delta: float) -> void:
 	if body.linear_velocity.length_squared() > .5:
 		_rotate_car(_delta)
 	## downwards force
-	body.apply_force(global_basis * Vector3.DOWN * speed * downforceMultiplier)
+	body.apply_force(global_basis * Vector3.DOWN * absf(speed) * downforceMultiplier)
 	
 func _face_ground_probably(_delta:float) -> void:
 	var normal = Vector3.ZERO
@@ -83,19 +83,17 @@ func _rotate_car(_delta:float) -> void:
 	global_basis = global_basis.slerp(new_basis, turn_speed * _delta * turn_cap)
 	global_transform = global_transform.orthonormalized()
 	## tilt car
+	var t = -drift / 27
+	t = clampf(t, -1, 1)
 	if grounded:
-		var t = -drift / 27
-		t = clampf(t, -1, 1)
-		$MeshInstance3D/right_front_particle.emitting = t < -.5
-		$MeshInstance3D/right_rear_particle.emitting = t < -.5
-		$MeshInstance3D/left_front_particle.emitting = t > .5
-		$MeshInstance3D/left_rear_particle.emitting = t > .5
+		burning_tire = abs(t) > .5
 		model.rotation.z = lerp(model.rotation.z, t, 10 * _delta)
 	else:
-		$MeshInstance3D/right_front_particle.emitting = false
-		$MeshInstance3D/right_rear_particle.emitting = false
-		$MeshInstance3D/left_front_particle.emitting = false
-		$MeshInstance3D/left_rear_particle.emitting = false
+		burning_tire = false
+	$MeshInstance3D/right_front_particle.emitting = burning_tire and t < 0.0
+	$MeshInstance3D/right_rear_particle.emitting = burning_tire and t < 0.0
+	$MeshInstance3D/left_front_particle.emitting = burning_tire and t > 0.0
+	$MeshInstance3D/left_rear_particle.emitting = burning_tire and t > 0.0
 
 func set_tire_angle(_angle:float) -> void:
 	model.get_node("rally_car_02/car_body/wheel_front_left").rotation.z = _angle

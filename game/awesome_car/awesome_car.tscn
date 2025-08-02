@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bb6brj2g75xu7"]
+[gd_scene load_steps=13 format=3 uid="uid://bb6brj2g75xu7"]
 
-[ext_resource type="Script" path="res://game/awesome_car/awesome_car.gd" id="1_ig06s"]
+[ext_resource type="Script" uid="uid://dowegdgsahh22" path="res://game/awesome_car/awesome_car.gd" id="1_ig06s"]
 [ext_resource type="PackedScene" uid="uid://bhh20qlvhy15d" path="res://game/more_awesome_car/rally_car_01.fbx" id="3_ol8ve"]
+[ext_resource type="AudioStream" uid="uid://bc2km82t7mp68" path="res://RACING GAME SFX/SFX/engineloop.wav" id="3_qqaaj"]
+[ext_resource type="AudioStream" uid="uid://cyeysn48bfwtq" path="res://RACING GAME SFX/SFX/tirescreech.wav" id="4_nkyxg"]
 
 [sub_resource type="Curve" id="Curve_ghkvk"]
 _data = [Vector2(0, 0), 0.0, 2.85643, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -30,8 +32,40 @@ friction = 0.0
 bounce = 1.0
 absorbent = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_27vrw"]
-size = Vector3(2.1001, 1.33545, 4.52505)
+[sub_resource type="SphereShape3D" id="SphereShape3D_afpqb"]
+radius = 1.0
+
+[sub_resource type="GDScript" id="GDScript_nkyxg"]
+script/source = "extends AudioStreamPlayer3D
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	var car = $\"..\"
+	var speed = car.speed
+	var wanted_pitch = speed / 80 + 0.5
+	if car.burning_tire or not car.grounded:
+		wanted_pitch += 0.5
+	pitch_scale = move_toward(pitch_scale, wanted_pitch, _delta)
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_g6rhu"]
+script/source = "extends AudioStreamPlayer3D
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	var burning_tire = $\"..\".burning_tire
+	if not playing and burning_tire:
+		volume_db = -12.0
+		play()
+	var wanted_db = -10.0 if burning_tire else -60.0
+	volume_db = move_toward(volume_db, wanted_db, 200.0 * _delta)
+	#if playing and not burning_tire:
+		#stop()
+"
 
 [node name="AwesomeCar" type="Node3D"]
 script = ExtResource("1_ig06s")
@@ -87,25 +121,33 @@ can_sleep = false
 continuous_cd = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00366211, 0.167725, -0.483414)
-shape = SubResource("BoxShape3D_27vrw")
+shape = SubResource("SphereShape3D_afpqb")
 
 [node name="GroundCheck" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, -1.05039, -1.98442)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, -0.63355935, -1.98442)
 debug_shape_custom_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 debug_shape_thickness = 5
 
 [node name="GroundCheck2" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0218077, -1.05039, -0.708722)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0218077, -0.63355935, -0.708722)
 debug_shape_custom_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 debug_shape_thickness = 5
 
 [node name="GroundCheck3" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0109034, -1.05039, 0.403426)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0109034, -0.63355935, 0.403426)
 debug_shape_custom_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 debug_shape_thickness = 5
 
 [node name="GroundCheck4" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, -1.05039, 1.99533)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, -0.63355935, 1.99533)
 debug_shape_custom_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 debug_shape_thickness = 5
+
+[node name="EngineNoises" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_qqaaj")
+autoplay = true
+script = SubResource("GDScript_nkyxg")
+
+[node name="TireScreeching" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_nkyxg")
+script = SubResource("GDScript_g6rhu")

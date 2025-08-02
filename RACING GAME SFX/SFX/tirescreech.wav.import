@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cyeysn48bfwtq"
+path="res://.godot/imported/tirescreech.wav-b440dd73a3f6a55aff8bf1f603abfab0.sample"
+
+[deps]
+
+source_file="res://RACING GAME SFX/SFX/tirescreech.wav"
+dest_files=["res://.godot/imported/tirescreech.wav-b440dd73a3f6a55aff8bf1f603abfab0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
