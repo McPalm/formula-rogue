@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="formula rogue"
-run/main_scene="res://game/tracks/desert_spire.tscn"
+run/main_scene="res://test/testing.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://test/icon.svg"
 
