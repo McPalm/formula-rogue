@@ -19,6 +19,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if(Input.is_action_just_pressed("Quit")):get_tree().quit()
+	if(Input.is_action_just_pressed("Reset")):rotation = Vector3.ZERO
 	steering = move_toward(steering,Input.get_axis("right","left")* MAX_STEER, delta* 2.5)
 	engine_force = Input.get_axis("break","accelerate") * ENGINE_POWER #applied per traction wheel
 	camera_pivot.global_position = camera_pivot.global_position.lerp(global_position,delta * Camera_Follow_Speed)
