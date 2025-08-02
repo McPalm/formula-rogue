@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bb6brj2g75xu7"]
 
-[ext_resource type="Script" uid="uid://dowegdgsahh22" path="res://game/awesome_car/awesome_car.gd" id="1_ig06s"]
-[ext_resource type="PackedScene" uid="uid://ciqtkdaeue03k" path="res://game/awesome_car/rally_car_01.fbx" id="2_afpqb"]
+[ext_resource type="Script" path="res://game/awesome_car/awesome_car.gd" id="1_ig06s"]
+[ext_resource type="PackedScene" uid="uid://bhh20qlvhy15d" path="res://game/more_awesome_car/rally_car_01.fbx" id="3_ol8ve"]
 
 [sub_resource type="Curve" id="Curve_ghkvk"]
 _data = [Vector2(0, 0), 0.0, 2.85643, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -30,19 +30,21 @@ friction = 0.0
 bounce = 1.0
 absorbent = true
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ghkvk"]
-radius = 1.1204721
+[sub_resource type="BoxShape3D" id="BoxShape3D_27vrw"]
+size = Vector3(2.1001, 1.33545, 4.52505)
 
 [node name="AwesomeCar" type="Node3D"]
 script = ExtResource("1_ig06s")
+grip = 8.0
+downforceMultiplier = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 
-[node name="rally_car_01" parent="MeshInstance3D" instance=ExtResource("2_afpqb")]
-transform = Transform3D(-2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, -2.9802322e-08, 0, 0, 0)
+[node name="rally_car_02" parent="MeshInstance3D" instance=ExtResource("3_ol8ve")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="right_rear_particle" type="GPUParticles3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8103864, -0.5968915, 1.4823562)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.810386, -0.596892, 1.48236)
 emitting = false
 amount = 256
 lifetime = 0.2
@@ -51,7 +53,7 @@ process_material = SubResource("ParticleProcessMaterial_qqaaj")
 draw_pass_1 = SubResource("SphereMesh_nkyxg")
 
 [node name="left_rear_particle" type="GPUParticles3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7667849, -0.5968915, 1.5460804)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.766785, -0.596892, 1.54608)
 emitting = false
 amount = 256
 lifetime = 0.2
@@ -60,7 +62,7 @@ process_material = SubResource("ParticleProcessMaterial_qqaaj")
 draw_pass_1 = SubResource("SphereMesh_nkyxg")
 
 [node name="left_front_particle" type="GPUParticles3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78271604, -0.5968915, -1.3852289)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.782716, -0.596892, -1.38523)
 emitting = false
 amount = 256
 lifetime = 0.2
@@ -69,7 +71,7 @@ process_material = SubResource("ParticleProcessMaterial_qqaaj")
 draw_pass_1 = SubResource("SphereMesh_nkyxg")
 
 [node name="right_front_particle" type="GPUParticles3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8103864, -0.5968915, -1.2896428)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.810386, -0.596892, -1.28964)
 emitting = false
 amount = 256
 lifetime = 0.2
@@ -85,25 +87,25 @@ can_sleep = false
 continuous_cd = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("SphereShape3D_ghkvk")
-debug_color = Color(0, 2.0493379, 2.3849072, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00366211, 0.167725, -0.483414)
+shape = SubResource("BoxShape3D_27vrw")
 
 [node name="GroundCheck" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, -1.0503919, -1.9844214)
-debug_shape_custom_color = Color(0.06469653, 0.06469653, 0.06469653, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, -1.05039, -1.98442)
+debug_shape_custom_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 debug_shape_thickness = 5
 
 [node name="GroundCheck2" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02180767, -1.0503919, -0.7087218)
-debug_shape_custom_color = Color(0.06469653, 0.06469653, 0.06469653, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0218077, -1.05039, -0.708722)
+debug_shape_custom_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 debug_shape_thickness = 5
 
 [node name="GroundCheck3" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010903358, -1.0503919, 0.40342623)
-debug_shape_custom_color = Color(0.06469653, 0.06469653, 0.06469653, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0109034, -1.05039, 0.403426)
+debug_shape_custom_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 debug_shape_thickness = 5
 
 [node name="GroundCheck4" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7683716e-07, -1.0503919, 1.9953252)
-debug_shape_custom_color = Color(0.06469653, 0.06469653, 0.06469653, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, -1.05039, 1.99533)
+debug_shape_custom_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 debug_shape_thickness = 5
