@@ -9,6 +9,16 @@ signal lap_finished(next_lap)
 func _ready() -> void:
 	generate_checkpoints()
 	place_car()
+	await get_tree().create_timer(0.5).timeout
+	place_car()
+	$ItemPlacer.place_time_bonus(18)
+	get_tree().paused = true
+	$UI/Countdown.start_countdown()
+	$Bomb.time_up.connect(game_over)
+
+func set_ice_physics(_active:bool) -> void:
+	$AwesomeCar.grip = 2.0 if _active else 8.0
+	$AwesomeCar.turn_speed = 2.0 if _active else 1.0
 
 func generate_checkpoints() -> void:
 	checkpoints = []
@@ -35,10 +45,18 @@ func _process(_delta: float) -> void:
 		place_car()
 
 func new_lap() -> void:
+	set_ice_physics(false)
 	current_lap += 1
+	$UI/PickYourModifier.open()
+	$ItemPlacer.place_time_bonus(18)
 	lap_finished.emit(current_lap)
 
 func player_is_off_course() -> bool:
 	var tolerance = 60.0 * 60.0
 	var distance_to_last_cp = (car.global_position - checkpoints[current_cp]).length_squared()
 	return distance_to_last_cp > tolerance
+
+
+func game_over() -> void:
+	$AwesomeCar.top_speed = 0.0
+	$AwesomeCar.acceleration = 0.0

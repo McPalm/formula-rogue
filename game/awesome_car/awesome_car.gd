@@ -74,7 +74,7 @@ func _rotate_car(_delta:float) -> void:
 	elif not turn_axis:
 		turn_axis = drift / 10.0
 	if grounded:
-		turn_input = move_toward(turn_input, turn_axis, _delta * 10.0)
+		turn_input = move_toward(turn_input, turn_axis, _delta * grip)
 		set_tire_angle(-turn_input * 0.3)
 	## Turn based on input
 	var new_basis = global_basis.rotated(global_transform.basis.y, -turn_input)
@@ -83,7 +83,7 @@ func _rotate_car(_delta:float) -> void:
 	global_basis = global_basis.slerp(new_basis, turn_speed * _delta * turn_cap)
 	global_transform = global_transform.orthonormalized()
 	## tilt car
-	var t = -drift / 27
+	var t = -drift * grip / 200
 	t = clampf(t, -1, 1)
 	if grounded:
 		burning_tire = abs(t) > .5

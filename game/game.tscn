@@ -1,10 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://rmbpgopfknfy"]
+[gd_scene load_steps=18 format=3 uid="uid://rmbpgopfknfy"]
 
 [ext_resource type="Script" uid="uid://c47hyk8bk42yr" path="res://game/game.gd" id="1_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://c7id1mexeggw6" path="res://game/tracks/desert_spire.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://bb6brj2g75xu7" path="res://game/awesome_car/awesome_car.tscn" id="1_l1rk1"]
 [ext_resource type="Script" uid="uid://bx46sgnh2rkgb" path="res://game/camera.gd" id="3_4fuuu"]
 [ext_resource type="AudioStream" uid="uid://ceuvajuir7pwr" path="res://RACING GAME SFX/OST/gameplayloop.mp3" id="4_4fuuu"]
+[ext_resource type="Script" uid="uid://db65wkqejedy" path="res://game/roguelike/pick_your_modifier.gd" id="6_y36n6"]
+[ext_resource type="PackedScene" uid="uid://dg0avi4in0581" path="res://game/roguelike/card.tscn" id="7_l8g03"]
+[ext_resource type="Script" uid="uid://ddiit6pcy0flw" path="res://game/item_placer.gd" id="7_u5opy"]
+[ext_resource type="Script" uid="uid://bn5u0rspnrus2" path="res://game/Countdown.gd" id="8_l8g03"]
+[ext_resource type="Script" uid="uid://bqeg7xyn0lefe" path="res://game/bomb.gd" id="10_j8tme"]
 
 [sub_resource type="GDScript" id="GDScript_dakft"]
 script/source = "extends Control
@@ -57,6 +62,25 @@ font_size = 23
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_l8g03"]
+font_size = 70
+shadow_size = 13
+shadow_color = Color(0.24313726, 0, 0.3254902, 1)
+
+[sub_resource type="GDScript" id="GDScript_j8tme"]
+script/source = "extends Control
+
+func _process(_delta: float) -> void:
+	var time_left = Bomb.instance.time_left
+	var minutes = floori(time_left/60)
+	var seconds = int(time_left)%60
+	var tenth = int(time_left * 10) % 10
+	$Label.text = \"%d:%02d:%d\" % [minutes, seconds, tenth]
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_j8tme"]
+font_size = 60
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_dxrkv")
 
@@ -78,11 +102,13 @@ camera = NodePath("Camera3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0532112, 0)
 
 [node name="music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("4_4fuuu")
 autoplay = true
 bus = &"Music"
 
 [node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="Lap" type="Control" parent="UI"]
 layout_mode = 3
@@ -159,3 +185,85 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "11 KMH"
 label_settings = SubResource("LabelSettings_dakft")
+
+[node name="PickYourModifier" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_y36n6")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="UI/PickYourModifier"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -175.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+last_wrap_alignment = 2
+
+[node name="Card1" parent="UI/PickYourModifier/HFlowContainer" instance=ExtResource("7_l8g03")]
+layout_mode = 2
+
+[node name="Card2" parent="UI/PickYourModifier/HFlowContainer" instance=ExtResource("7_l8g03")]
+layout_mode = 2
+
+[node name="Card3" parent="UI/PickYourModifier/HFlowContainer" instance=ExtResource("7_l8g03")]
+layout_mode = 2
+
+[node name="Countdown" type="Control" parent="UI"]
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_l8g03")
+
+[node name="Label" type="Label" parent="UI/Countdown"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "3"
+label_settings = SubResource("LabelSettings_l8g03")
+
+[node name="Timer" type="Timer" parent="UI/Countdown"]
+
+[node name="BombTimer" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_j8tme")
+
+[node name="Label" type="Label" parent="UI/BombTimer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "1:00:0"
+label_settings = SubResource("LabelSettings_j8tme")
+
+[node name="ItemPlacer" type="Node3D" parent="."]
+script = ExtResource("7_u5opy")
+
+[node name="Bomb" type="Node" parent="."]
+script = ExtResource("10_j8tme")
