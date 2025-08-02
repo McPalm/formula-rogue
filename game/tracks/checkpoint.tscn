@@ -13,7 +13,7 @@ radius = 21.0
 [node name="checkpoint" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-layers = 2
+layers = 32
 mesh = SubResource("SphereMesh_bg82o")
 
 [node name="Area3D" type="Area3D" parent="."]
