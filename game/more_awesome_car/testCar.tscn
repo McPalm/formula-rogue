@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://tesva0v8ekmt"]
+
+[ext_resource type="Script" path="res://game/more_awesome_car/player_car.gd" id="1_hsvgo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_scvsr"]
+height = 2.17442
+
+[sub_resource type="BoxMesh" id="BoxMesh_gfcgs"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2boc4"]
+
+[node name="TestCar" type="VehicleBody3D"]
+mass = 160.0
+gravity_scale = 2.0
+script = ExtResource("1_hsvgo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00265604, -0.0046033, 0.0579727)
+shape = SubResource("CapsuleShape3D_scvsr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_gfcgs")
+
+[node name="wheel_FL" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.344727, 1.19825)
+use_as_steering = true
+wheel_roll_influence = 0.01
+suspension_stiffness = 100.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wheel_FL"]
+transform = Transform3D(-4.37114e-08, 0.0347773, 0, -1, -1.52016e-09, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_2boc4")
+
+[node name="wheel_FR" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.344727, 1.19825)
+use_as_steering = true
+wheel_roll_influence = 0.01
+suspension_stiffness = 100.0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="wheel_FR"]
+transform = Transform3D(-4.37114e-08, 0.0347773, 0, -1, -1.52016e-09, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_2boc4")
+skeleton = NodePath("../../wheel_FL")
+
+[node name="wheel_RL" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.344727, -0.743213)
+use_as_traction = true
+wheel_roll_influence = 0.01
+suspension_stiffness = 100.0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="wheel_RL"]
+transform = Transform3D(-4.37114e-08, 0.0347773, 0, -1, -1.52016e-09, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_2boc4")
+skeleton = NodePath("../../wheel_FL")
+
+[node name="wheel_RR" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.344727, -0.743213)
+use_as_traction = true
+wheel_roll_influence = 0.01
+suspension_stiffness = 100.0
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="wheel_RR"]
+transform = Transform3D(-4.37114e-08, 0.0347773, 0, -1, -1.52016e-09, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_2boc4")
+skeleton = NodePath("../../wheel_FL")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, -0.210209, 1.65564, -4.39894)

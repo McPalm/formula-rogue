@@ -65,7 +65,7 @@ texture_type = 1
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_disabled;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_disabled;
 
 uniform sampler2D Texture_Base : source_color, filter_nearest;
 uniform sampler2D Texture_Red : source_color, filter_nearest;
@@ -128,8 +128,6 @@ void fragment() {
 }
 "
 modes/specular = 2
-preview_params/Texture_Base = "Resource(\"uid://bknyu7jnfhl7n\", \"res://game/textures/sandstonecracky.png\")"
-preview_params/Texture_Red = "Resource(\"uid://d3khgo3vww5ax\", \"res://game/textures/sandsmooth.png\")"
 nodes/vertex/0/position = Vector2(400, 160)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_5hivm")
 nodes/fragment/2/position = Vector2(-1280, 340)

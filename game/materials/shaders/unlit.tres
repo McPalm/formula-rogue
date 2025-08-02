@@ -11,7 +11,7 @@ texture_filter = 1
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
 uniform sampler2D Texture_Base : filter_nearest;
 
@@ -29,15 +29,16 @@ void fragment() {
 
 // Output:0
 	ALBEDO = vec3(n_out2p0);
+	SPECULAR = n_out2p0;
 	EMISSION = vec3(n_out3p0.xyz);
 
 
 }
 "
 nodes/fragment/2/node = SubResource("VisualShaderNodeFloatConstant_7julf")
-nodes/fragment/2/position = Vector2(160, 240)
+nodes/fragment/2/position = Vector2(80, 200)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_dotyd")
-nodes/fragment/3/position = Vector2(100, 340)
+nodes/fragment/3/position = Vector2(-100, 340)
 nodes/fragment/4/node = SubResource("VisualShaderNodeTexture2DParameter_3k5f4")
-nodes/fragment/4/position = Vector2(-320, 300)
-nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 4, 0, 3, 2, 3, 0, 0, 5)
+nodes/fragment/4/position = Vector2(-520, 300)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 4, 0, 3, 2, 3, 0, 0, 5, 2, 0, 0, 4)

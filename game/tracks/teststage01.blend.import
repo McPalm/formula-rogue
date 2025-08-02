@@ -15,12 +15,9 @@ dest_files=["res://.godot/imported/teststage01.blend-95e5210ad86ac44d2ca530cdb78
 
 nodes/root_type=""
 nodes/root_name=""
-nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
-nodes/use_name_suffixes=true
-nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
@@ -34,9 +31,6 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-materials/extract=0
-materials/extract_format=0
-materials/extract_path=""
 _subresources={
 "materials": {
 "Cactus": {
@@ -61,6 +55,9 @@ _subresources={
 "mesh_instance/cast_shadow": 0,
 "mesh_instance/layers": 0
 },
+"PATH:Roadvisold": {
+"import/skip_import": true
+},
 "PATH:Roadwalls": {
 "generate/physics": true
 }
@@ -75,7 +72,6 @@ blender/nodes/modifiers=1
 blender/meshes/colors=true
 blender/meshes/uvs=true
 blender/meshes/normals=true
-blender/meshes/export_geometry_nodes_instances=false
 blender/meshes/tangents=true
 blender/meshes/skins=2
 blender/meshes/export_bones_deforming_mesh_only=false
@@ -84,4 +80,3 @@ blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
-gltf/naming_version=2
