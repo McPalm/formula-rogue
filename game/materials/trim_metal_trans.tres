@@ -1,9 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://buiadqt0prlqi"]
 
 [ext_resource type="Shader" uid="uid://hkbbeu3yha3o" path="res://game/materials/shaders/unlittrans.tres" id="1_15lpt"]
-[ext_resource type="Texture2D" uid="uid://cganah7xwm82n" path="res://game/textures/TrimMetal.png" id="2_h6l7c"]
+[ext_resource type="Texture2D" uid="uid://bcvkffldj8lw6" path="res://game/textures/trim_metal_trans.png" id="2_15lpt"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_15lpt")
-shader_parameter/Texture_Base = ExtResource("2_h6l7c")
+shader_parameter/Texture_Base = ExtResource("2_15lpt")
