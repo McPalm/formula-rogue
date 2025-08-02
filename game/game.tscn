@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://rmbpgopfknfy"]
+[gd_scene load_steps=10 format=3 uid="uid://rmbpgopfknfy"]
 
 [ext_resource type="Script" uid="uid://c47hyk8bk42yr" path="res://game/game.gd" id="1_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://c7id1mexeggw6" path="res://game/tracks/desert_spire.tscn" id="1_h7iqs"]
@@ -36,6 +36,26 @@ func _lap_finished(next_lap:int) -> void:
 font_size = 30
 shadow_size = 7
 shadow_color = Color(0.24313726, 0, 0.3254902, 1)
+
+[sub_resource type="GDScript" id="GDScript_dxrkv"]
+script/source = "extends Control
+
+var speed:float = 0.0
+
+func _process(_delta: float) -> void:
+	speed = $\"../../AwesomeCar\".speed
+	$Text.text = \"%d km/h\" % (speed* 3.6)
+	queue_redraw()
+
+
+func _draw() -> void:
+	draw_arc(Vector2.ZERO, 80, -PI, -PI + speed / 85 * PI, 24, Color.WHITE, 6)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_dakft"]
+font_size = 23
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_dxrkv")
@@ -112,3 +132,30 @@ text = "Lap 1"
 label_settings = SubResource("LabelSettings_dxrkv")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Speedometer" type="Control" parent="UI"]
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+script = SubResource("GDScript_dxrkv")
+
+[node name="Text" type="Label" parent="UI/Speedometer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -23.0
+offset_right = 30.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "11 KMH"
+label_settings = SubResource("LabelSettings_dakft")
