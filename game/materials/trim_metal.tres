@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ckgji48cfmaef"]
+
+[ext_resource type="Shader" uid="uid://b04lsg2k78js1" path="res://game/materials/shaders/unlit.tres" id="1_cs2iy"]
+[ext_resource type="Texture2D" uid="uid://cganah7xwm82n" path="res://game/textures/TrimMetal.png" id="2_cs2iy"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_cs2iy")
+shader_parameter/Texture_Base = ExtResource("2_cs2iy")
