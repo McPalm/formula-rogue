@@ -1,15 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu3gore1j0kin"]
+[gd_scene load_steps=4 format=3 uid="uid://c7id1mexeggw6"]
 
 [ext_resource type="PackedScene" uid="uid://dw0u6usslor44" path="res://game/tracks/stage02_spire.blend" id="1_50xwo"]
-[ext_resource type="PackedScene" uid="uid://bb6brj2g75xu7" path="res://game/awesome_car/awesome_car.tscn" id="2_q7pa5"]
-[ext_resource type="Script" uid="uid://bx46sgnh2rkgb" path="res://game/camera.gd" id="3_q7pa5"]
+[ext_resource type="PackedScene" uid="uid://deo6hesje7yqp" path="res://game/more_awesome_car/player_car.tscn" id="2_o8h13"]
 
 [sub_resource type="Environment" id="Environment_1f1nd"]
 ambient_light_source = 2
-ambient_light_color = Color(0.54977655, 0.42684013, 0.67118204, 1)
+ambient_light_color = Color(0.549777, 0.42684, 0.671182, 1)
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.8005104, 0.55265844, 0.66936225, 1)
+fog_light_color = Color(0.80051, 0.552658, 0.669362, 1)
 fog_density = 1.0
 fog_depth_begin = 100.0
 fog_depth_end = 500.0
@@ -18,22 +17,12 @@ fog_depth_end = 500.0
 
 [node name="stage02_spire" parent="." instance=ExtResource("1_50xwo")]
 
-[node name="AwesomeCar" parent="." instance=ExtResource("2_q7pa5")]
-transform = Transform3D(-0.96434075, 0, -0.26466417, 0, 1, 0, 0.26466417, 0, -0.96434075, 209.34453, 5.301749, 34.880672)
-
-[node name="Camera3D" type="Camera3D" parent="AwesomeCar" node_paths=PackedStringArray("focus", "car")]
-transform = Transform3D(1, 0, 0, 0, 0.9890159, 0.1478094, 0, -0.1478094, 0.9890159, 0, 3.619, 7.415)
-fov = 90.6
-script = ExtResource("3_q7pa5")
-focus = NodePath("../CameraFocus")
-car = NodePath("..")
-
-[node name="CameraFocus" type="Node3D" parent="AwesomeCar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0532112, 0)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1f1nd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.6523233, 0.47845626, -0.5878383, 0, 0.77557284, 0.6312581, 0.7579408, -0.41178435, 0.5059242, 0, 0, 0)
-light_color = Color(0.90063506, 0.86964834, 0.64904857, 1)
+transform = Transform3D(0.652323, 0.478456, -0.587838, 0, 0.775573, 0.631258, 0.757941, -0.411784, 0.505924, 0, 0, 0)
+light_color = Color(0.900635, 0.869648, 0.649049, 1)
+
+[node name="rally_car_01" parent="." instance=ExtResource("2_o8h13")]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 215.626, 8.10385, 39.6148)
