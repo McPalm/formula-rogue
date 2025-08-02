@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b18yuih7whodu"]
+
+[ext_resource type="Shader" uid="uid://cge7058ym6ef6" path="res://game/materials/shaders/billboard.tres" id="1_dv6nt"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dv6nt")
+shader_parameter/SeedMult = 2.404999999998836

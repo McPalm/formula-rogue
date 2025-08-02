@@ -33,6 +33,11 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
+"Billboard": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://game/materials/billboard.tres",
+"use_external/path": "uid://b18yuih7whodu"
+},
 "Cactus": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://game/materials/cactus.tres",
@@ -47,9 +52,22 @@ _subresources={
 "use_external/enabled": true,
 "use_external/fallback_path": "res://game/materials/sand.tres",
 "use_external/path": "uid://s0xlknwbpwp7"
+},
+"Trim_Metal": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://game/materials/trim_metal.tres",
+"use_external/path": "uid://ckgji48cfmaef"
+},
+"Trim_Metal_trans": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://game/materials/trim_metal_trans.tres",
+"use_external/path": "uid://buiadqt0prlqi"
 }
 },
 "nodes": {
+"PATH:Billboard_001": {
+"mesh_instance/layers": 0
+},
 "PATH:Roadcol": {
 "mesh_instance/layers": 0
 },
