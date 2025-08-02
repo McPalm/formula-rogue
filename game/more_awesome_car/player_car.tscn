@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=4 uid="uid://deo6hesje7yqp"]
 
-[ext_resource type="Script" path="res://game/more_awesome_car/player_car.gd" id="1_fdt4w"]
+[ext_resource type="Script" uid="uid://bxttgkqb4dh5r" path="res://game/more_awesome_car/player_car.gd" id="1_fdt4w"]
 [ext_resource type="Texture2D" uid="uid://bx0gfxxx5gv1t" path="res://game/more_awesome_car/Diffuse.png" id="1_twoeb"]
 [ext_resource type="Texture2D" uid="uid://cwsvrvpfy04k7" path="res://game/more_awesome_car/Normal.png" id="2_6xm8t"]
 
