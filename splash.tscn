@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgdonodufd48w"]
+[gd_scene load_steps=10 format=3 uid="uid://dgdonodufd48w"]
 
 [ext_resource type="Texture2D" uid="uid://b3f0u2p4802il" path="res://game/textures/LogoWhite.png_StableCondition.png" id="1_50j67"]
 [ext_resource type="AudioStream" uid="uid://cwko40odvb5q7" path="res://RACING GAME SFX/SFX/Stable Condition Logo.wav" id="2_13jq6"]
 [ext_resource type="Material" uid="uid://chvl6gup3icq7" path="res://main_menu/intro/DustTrail.tres" id="3_wyt6d"]
 [ext_resource type="Material" uid="uid://1asy1xbsqvpc" path="res://game/awesome_car/rain_particles.tres" id="4_tbd5x"]
 [ext_resource type="Material" uid="uid://uhbwp88ttruc" path="res://game/awesome_car/tire_burn_particles.tres" id="5_h153m"]
+[ext_resource type="SphereMesh" uid="uid://b6j80edpd4yyd" path="res://main_menu/intro/dust_cloud.tres" id="6_tbd5x"]
 
 [sub_resource type="GDScript" id="GDScript_50j67"]
 script/source = "extends Node
@@ -20,6 +21,9 @@ func _ready() -> void:
 "
 
 [sub_resource type="BoxMesh" id="BoxMesh_bxq7p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h153m"]
+albedo_color = Color(0.99999994, 0.8431733, 0.7340791, 1)
 
 [node name="Node" type="Node"]
 script = SubResource("GDScript_50j67")
@@ -88,3 +92,11 @@ draw_pass_1 = SubResource("BoxMesh_bxq7p")
 [node name="GPUParticles3D3" type="GPUParticles3D" parent="Node3D"]
 process_material = ExtResource("5_h153m")
 draw_pass_1 = SubResource("BoxMesh_bxq7p")
+
+[node name="trailDust" type="GPUParticles3D" parent="Node3D"]
+transform = Transform3D(1.0000004, -1.9557774e-08, -2.2351742e-08, 9.778887e-09, 1, 0, -7.450581e-09, 3.7252903e-09, 1.0000004, -1.863678, -0.30573845, 0.16848755)
+material_override = SubResource("StandardMaterial3D_h153m")
+amount = 64
+lifetime = 3.0
+process_material = ExtResource("3_wyt6d")
+draw_pass_1 = ExtResource("6_tbd5x")

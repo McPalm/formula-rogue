@@ -6,6 +6,7 @@
 [ext_resource type="Animation" uid="uid://gv7gii6xwk2r" path="res://main_menu/RallyCarDriveThrough.res" id="4_6tl50"]
 [ext_resource type="PackedScene" uid="uid://bhh20qlvhy15d" path="res://game/more_awesome_car/rally_car_01.fbx" id="4_bws42"]
 [ext_resource type="Material" uid="uid://chvl6gup3icq7" path="res://main_menu/intro/DustTrail.tres" id="5_3f7m4"]
+[ext_resource type="SphereMesh" uid="uid://b6j80edpd4yyd" path="res://main_menu/intro/dust_cloud.tres" id="7_6at21"]
 [ext_resource type="AudioStream" uid="uid://bc2km82t7mp68" path="res://RACING GAME SFX/SFX/engineloop.wav" id="7_t6bnd"]
 [ext_resource type="AudioStream" uid="uid://3nvqwkev1sgc" path="res://RACING GAME SFX/OST/mainmenuintro.mp3" id="8_ia84y"]
 
@@ -159,8 +160,6 @@ point_count = 3
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bws42"]
 albedo_color = Color(0.99999994, 0.8431733, 0.7340791, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_ia84y"]
-
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_3qwjl")
 
@@ -237,7 +236,7 @@ material_override = SubResource("StandardMaterial3D_bws42")
 amount = 64
 lifetime = 3.0
 process_material = ExtResource("5_3f7m4")
-draw_pass_1 = SubResource("SphereMesh_ia84y")
+draw_pass_1 = ExtResource("7_6at21")
 
 [node name="EngineNoise1" type="AudioStreamPlayer3D" parent="Path3D/PathFollow3D/Node3D/rally_car_01"]
 transform = Transform3D(0.9928967, -0.08647086, 0.083376855, 0.0830086, 0.9957248, 0.044163555, -0.086827226, -0.03692371, 0.9956912, -162.97021, -20.126402, -118.50636)
