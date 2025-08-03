@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://isuqj2j7lhyg"]
+
+[ext_resource type="Shader" uid="uid://cpvj0ncndkdg7" path="res://game/materials/shaders/Blinker.tres" id="1_jtbvb"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jtbvb")
+shader_parameter/Interval = 3.0
+shader_parameter/Color = Color(1, 0, 0, 1)
