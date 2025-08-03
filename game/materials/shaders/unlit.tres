@@ -1,4 +1,19 @@
-[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://b04lsg2k78js1"]
+[gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://b04lsg2k78js1"]
+
+[ext_resource type="Texture2D" uid="uid://cu4cggb46dd51" path="res://game/textures/rainshift.png" id="1_dotyd"]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_3k5f4"]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_6tp4i"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_wjsoy"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_75jim"]
+default_input_values = [0, 0.0, 1, 0.10000000000582077]
+operator = 2
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_7julf"]
 
@@ -7,13 +22,29 @@ source = 5
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_3k5f4"]
 parameter_name = "Texture_Base"
+color_default = 1
 texture_filter = 1
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_nua7r"]
+texture = ExtResource("1_dotyd")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_a5wl1"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_mlde4"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_es5ox"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 1
 
 [resource]
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
 
-uniform sampler2D Texture_Base : filter_nearest;
+uniform sampler2D Texture_Base : hint_default_black, filter_nearest;
 
 
 
@@ -38,7 +69,23 @@ void fragment() {
 nodes/fragment/2/node = SubResource("VisualShaderNodeFloatConstant_7julf")
 nodes/fragment/2/position = Vector2(80, 200)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_dotyd")
-nodes/fragment/3/position = Vector2(-100, 340)
+nodes/fragment/3/position = Vector2(-560, 420)
 nodes/fragment/4/node = SubResource("VisualShaderNodeTexture2DParameter_3k5f4")
-nodes/fragment/4/position = Vector2(-520, 300)
-nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 4, 0, 3, 2, 3, 0, 0, 5, 2, 0, 0, 4)
+nodes/fragment/4/position = Vector2(-980, 380)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_nua7r")
+nodes/fragment/5/position = Vector2(-520, -60)
+nodes/fragment/6/node = SubResource("VisualShaderNodeInput_a5wl1")
+nodes/fragment/6/position = Vector2(-1680, 80)
+nodes/fragment/8/node = SubResource("VisualShaderNodeInput_mlde4")
+nodes/fragment/8/position = Vector2(-1780, 240)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVectorOp_es5ox")
+nodes/fragment/9/position = Vector2(-780, 40)
+nodes/fragment/10/node = SubResource("VisualShaderNodeVectorCompose_3k5f4")
+nodes/fragment/10/position = Vector2(-980, 200)
+nodes/fragment/14/node = SubResource("VisualShaderNodeVectorOp_6tp4i")
+nodes/fragment/14/position = Vector2(-160, 180)
+nodes/fragment/15/node = SubResource("VisualShaderNodeInput_wjsoy")
+nodes/fragment/15/position = Vector2(-1640, -20)
+nodes/fragment/16/node = SubResource("VisualShaderNodeFloatOp_75jim")
+nodes/fragment/16/position = Vector2(-1290.196, 206.15596)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 4, 0, 3, 2, 2, 0, 0, 4, 9, 0, 5, 0, 5, 0, 14, 1, 3, 0, 14, 0, 10, 0, 9, 1, 8, 0, 16, 0, 16, 0, 10, 1, 15, 0, 9, 0, 3, 0, 0, 5)
