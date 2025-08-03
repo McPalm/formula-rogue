@@ -18,12 +18,18 @@ script/source = "extends Control
 
 func _ready() -> void:
 	$\"../..\".lap_finished.connect(_lap_finished)
+	$LapCounter.text = \"Lap %d/%d\" % [1, $\"../..\".winning_lap]
+	
 	
 
 func _lap_finished(next_lap:int) -> void:
-	$LapCounter.text = \"Lap %d\" % (next_lap + 1)
+	$LapCounter.text = \"Lap %d/%d\" % [(next_lap + 1), $\"../..\".winning_lap]
+	_show_message(\"Lap %d\" % (next_lap + 1))
+	
+
+func _show_message(message:String) -> void:
 	var new_lap:Label = $\"Control/New Lap!\"
-	new_lap.text = \"Lap %d\" % (next_lap + 1)
+	new_lap.text = message
 	$\"Control\".position.x = size.x
 	new_lap.modulate = Color.TRANSPARENT
 	new_lap.show()
@@ -73,11 +79,12 @@ shadow_color = Color(0.24313726, 0, 0.3254902, 1)
 script/source = "extends Control
 
 func _process(_delta: float) -> void:
-	var time_left = Bomb.instance.time_left
-	var minutes = floori(time_left/60)
-	var seconds = int(time_left)%60
-	var tenth = int(time_left * 10) % 10
-	$Label.text = \"%d:%02d:%d\" % [minutes, seconds, tenth]
+	if Bomb.instance:
+		var time_left = Bomb.instance.time_left
+		var minutes = floori(time_left/60)
+		var seconds = int(time_left)%60
+		var tenth = int(time_left * 10) % 10
+		$Label.text = \"%d:%02d:%d\" % [minutes, seconds, tenth]
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_j8tme"]

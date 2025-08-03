@@ -3,6 +3,7 @@ var checkpoints:Array[Vector3]
 @onready var car:Node3D = $AwesomeCar
 var current_cp:int = 0
 var current_lap:int = 0
+var winning_lap:int = 7
 
 signal lap_finished(next_lap)
 signal on_game_over()
@@ -19,11 +20,13 @@ func _ready() -> void:
 	$Bomb.time_up.connect(game_over)
 	await $UI/Countdown.start_countdown()
 	$music.play()
+	await get_tree().create_timer(5.5).timeout
 
 func set_ice_physics(_active:bool) -> void:
-	$AwesomeCar.grip = 2.0 if _active else 8.0
+	$AwesomeCar.grip = 3.0 if _active else 8.0
 	$AwesomeCar.turn_speed = 2.0 if _active else 1.0
 	$AwesomeCar.SetRain(_active)
+	$Stage.set_fog(_active)
 
 func generate_checkpoints() -> void:
 	checkpoints = []
@@ -53,11 +56,12 @@ func _process(_delta: float) -> void:
 func new_lap() -> void:
 	set_ice_physics(false)
 	current_lap += 1
-	$UI/PickYourModifier.open()
-	$ItemPlacer.place_time_bonus(18)
-	lap_finished.emit(current_lap)
-	if current_lap == 10:
+	if current_lap == winning_lap:
 		win()
+	else:
+		$ItemPlacer.place_time_bonus(18)
+		$UI/PickYourModifier.open()
+		lap_finished.emit(current_lap)
 
 func player_is_off_course() -> bool:
 	var tolerance = 60.0 * 60.0
@@ -68,8 +72,15 @@ func player_is_off_course() -> bool:
 func game_over() -> void:
 	$AwesomeCar.disabled = true
 	on_game_over.emit()
+	$UI/Lap._show_message("GAME OVER")
+	await get_tree().create_timer(5.0).timeout
+	get_tree().change_scene_to_file("res://main_menu/main_menu.tscn")
 
 func win() -> void:
 	on_win.emit()
 	$AwesomeCar.disabled = true
 	$Bomb.queue_free()
+	$music.stop()
+	$UI/Lap._show_message("WINNER!")
+	await get_tree().create_timer(5.0).timeout
+	get_tree().change_scene_to_file("res://main_menu/main_menu.tscn")

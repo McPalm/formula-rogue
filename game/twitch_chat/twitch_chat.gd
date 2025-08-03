@@ -15,6 +15,7 @@ func _ready() -> void:
 	$RichTextLabel.clear()
 
 func _open_chat() -> void:
+	$RichTextLabel.clear()
 	show()
 	while true:
 		for n in 100:

@@ -249,5 +249,6 @@ doppler_tracking = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_ia84y")
+bus = &"Music"
 
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Button" to="." method="play_the_game"]

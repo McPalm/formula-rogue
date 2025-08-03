@@ -50,6 +50,10 @@ func _physics_process(_delta: float) -> void:
 		_rotate_car(_delta)
 	## downwards force
 	body.apply_force(global_basis * Vector3.DOWN * absf(speed) * downforceMultiplier)
+	if disabled:
+		body.linear_velocity *= 0.99
+		if body.linear_velocity.length() < 2.0:
+			body.linear_velocity = Vector3.ZERO
 	
 func _face_ground_probably(_delta:float) -> void:
 	var normal = Vector3.ZERO
@@ -81,6 +85,8 @@ func check_offroad() -> void:
 
 func _rotate_car(_delta:float) -> void:
 	var turn_axis = Input.get_axis("left", "right")
+	if disabled:
+		turn_axis = 0.0
 	if not grounded:
 		set_tire_angle(-turn_axis * 0.3)
 	if Input.is_action_pressed("break"):

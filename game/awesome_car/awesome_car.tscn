@@ -64,16 +64,16 @@ func _process(_delta: float) -> void:
 		play()
 	var wanted_db = -10.0 if burning_tire else -60.0
 	volume_db = move_toward(volume_db, wanted_db, 200.0 * _delta)
-	#if playing and not burning_tire:
-		#stop()
+	if playing and volume_db < -50:
+		stop()
 "
 
 [sub_resource type="GDScript" id="GDScript_vu0fh"]
 script/source = "extends AudioStreamPlayer3D
 
 func _process(delta: float) -> void:
-	var desired_volume = 0.0 if $\"..\".offroad else -60.0
-	volume_db = move_toward(volume_db, desired_volume, delta * 60.0)
+	var desired_volume = -10 if $\"..\".offroad else -60.0
+	volume_db = move_toward(volume_db, desired_volume, delta * 300.0)
 	if volume_db < -50 and playing:
 		stop()
 	if volume_db > -50 and not playing:
