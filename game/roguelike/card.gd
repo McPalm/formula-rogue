@@ -11,8 +11,8 @@ func _ready() -> void:
 func set_card_label(_name:String) -> void:
 	$Panel/Label.text = _name
 
-func _unhandled_key_input(event: InputEvent) -> void:	
-	if event.is_action("ui_accept") and has_focus():
+func _unhandled_input(event: InputEvent) -> void:	
+	if event.is_action("ui_accept") and has_focus() and event.is_pressed():
 		card_picked.emit()
 
 func gain_focus() -> void:
