@@ -1,0 +1,169 @@
+[gd_scene load_steps=11 format=3 uid="uid://ch3xbvx7v8m2o"]
+
+[ext_resource type="Texture2D" uid="uid://c7ebcd6bydg36" path="res://main_menu/intro/title.png" id="1_2rlva"]
+[ext_resource type="AudioStream" uid="uid://3fwq4cg81sts" path="res://RACING GAME SFX/VA/formularogueintro.wav" id="2_l808q"]
+[ext_resource type="Texture2D" uid="uid://b3f0u2p4802il" path="res://game/textures/LogoWhite.png_StableCondition.png" id="3_l808q"]
+[ext_resource type="AudioStream" uid="uid://3nvqwkev1sgc" path="res://RACING GAME SFX/OST/mainmenuintro.mp3" id="3_q7j6c"]
+[ext_resource type="Texture2D" uid="uid://br7l0hg2o252n" path="res://test/icon.svg" id="4_4mkma"]
+
+[sub_resource type="GDScript" id="GDScript_2rlva"]
+script/source = "extends Control
+
+signal completed()
+
+func _ready() -> void:
+	await get_tree().create_timer(1.0).timeout
+	await $Control._move_into_position()
+	create_tween().tween_property($Control, \"position\", $Control.position + Vector2(0, -200), 0.5)
+	$Control2.show()
+	create_tween().tween_property($Control2, \"scale\", Vector2.ONE, 0.5)
+	while $AudioStreamPlayer.playing:
+		await get_tree().process_frame
+	$Music.play()
+	completed.emit()
+"
+
+[sub_resource type="GDScript" id="GDScript_4mkma"]
+script/source = "extends Control
+
+func _move_into_position() -> void:
+	$\"../AudioStreamPlayer\".play()
+	while $\"../AudioStreamPlayer\".get_playback_position() < 10:
+		await get_tree().process_frame
+	$TextureRect.show()
+	create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE).tween_property($TextureRect, \"position\", Vector2(-147, -69), 0.5)
+	while $\"../AudioStreamPlayer\".get_playback_position() < 11:
+		await get_tree().process_frame
+	$TextureRect2.show()
+	create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE).tween_property($TextureRect2, \"position\", Vector2(-141, 7), 0.5)
+	while $\"../AudioStreamPlayer\".get_playback_position() < 12:
+		await get_tree().process_frame
+	
+	
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7j6c"]
+atlas = ExtResource("1_2rlva")
+region = Rect2(16, 16.5, 293, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgewu"]
+atlas = ExtResource("1_2rlva")
+region = Rect2(0, 142.5, 378, 113.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4mkma"]
+font_size = 18
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HammyIntro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_2rlva")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_4mkma")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 596.0
+offset_top = -89.0
+offset_right = 889.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_q7j6c")
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -978.0
+offset_top = -13.0
+offset_right = -600.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_tgewu")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l808q")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q7j6c")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+
+[node name="TextureRect" type="TextureRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 39.0
+offset_top = -132.0
+offset_right = 303.0
+offset_bottom = 132.0
+grow_vertical = 2
+texture = ExtResource("3_l808q")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = -113.0
+offset_right = -50.0
+offset_bottom = 113.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("4_4mkma")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Control2"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 76.0
+offset_right = 191.0
+offset_bottom = 203.0
+text = "Bit Assembly
+Bizarre Song
+Gangrene
+Noteworthy
+Sondy"
+label_settings = SubResource("LabelSettings_4mkma")

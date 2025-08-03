@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://rmbpgopfknfy"]
+[gd_scene load_steps=20 format=3 uid="uid://rmbpgopfknfy"]
 
 [ext_resource type="Script" uid="uid://c47hyk8bk42yr" path="res://game/game.gd" id="1_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://c7id1mexeggw6" path="res://game/tracks/desert_spire.tscn" id="1_h7iqs"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dg0avi4in0581" path="res://game/roguelike/card.tscn" id="7_l8g03"]
 [ext_resource type="Script" uid="uid://ddiit6pcy0flw" path="res://game/item_placer.gd" id="7_u5opy"]
 [ext_resource type="Script" uid="uid://bn5u0rspnrus2" path="res://game/Countdown.gd" id="8_l8g03"]
+[ext_resource type="PackedScene" uid="uid://cwmo8rnjxcxm8" path="res://game/twitch_chat/twitch_chat.tscn" id="9_qf6n1"]
 [ext_resource type="Script" uid="uid://bqeg7xyn0lefe" path="res://game/bomb.gd" id="10_j8tme"]
+[ext_resource type="Script" uid="uid://cieh4atdpvpc5" path="res://game/add_read.gd" id="11_3vho3"]
 
 [sub_resource type="GDScript" id="GDScript_dakft"]
 script/source = "extends Control
@@ -104,7 +106,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0532112, 0)
 [node name="music" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("4_4fuuu")
-autoplay = true
 bus = &"Music"
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -262,8 +263,22 @@ grow_horizontal = 2
 text = "1:00:0"
 label_settings = SubResource("LabelSettings_j8tme")
 
+[node name="TwitchChat" parent="UI" instance=ExtResource("9_qf6n1")]
+visible = false
+
 [node name="ItemPlacer" type="Node3D" parent="."]
 script = ExtResource("7_u5opy")
 
 [node name="Bomb" type="Node" parent="."]
 script = ExtResource("10_j8tme")
+
+[node name="AddRead" type="Node" parent="."]
+script = ExtResource("11_3vho3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AddRead"]
+
+[connection signal="lap_finished" from="." to="UI/TwitchChat" method="new_lap"]
+[connection signal="on_game_over" from="." to="UI/TwitchChat" method="on_game_over"]
+[connection signal="on_reset" from="." to="UI/TwitchChat" method="reset_car"]
+[connection signal="on_win" from="." to="UI/TwitchChat" method="on_win"]
+[connection signal="started" from="AddRead" to="UI/TwitchChat" method="add_read"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bb6brj2g75xu7"]
+[gd_scene load_steps=15 format=3 uid="uid://bb6brj2g75xu7"]
 
 [ext_resource type="Script" uid="uid://dowegdgsahh22" path="res://game/awesome_car/awesome_car.gd" id="1_ig06s"]
 [ext_resource type="PackedScene" uid="uid://bhh20qlvhy15d" path="res://game/more_awesome_car/rally_car_01.fbx" id="3_ol8ve"]
 [ext_resource type="AudioStream" uid="uid://bc2km82t7mp68" path="res://RACING GAME SFX/SFX/engineloop.wav" id="3_qqaaj"]
-[ext_resource type="AudioStream" uid="uid://cyeysn48bfwtq" path="res://RACING GAME SFX/SFX/tirescreech.wav" id="4_nkyxg"]
+[ext_resource type="AudioStream" uid="uid://bqo62j244m6nt" path="res://RACING GAME SFX/SFX/drift.wav" id="4_nkyxg"]
+[ext_resource type="AudioStream" uid="uid://cwqecnq0j5553" path="res://RACING GAME SFX/SFX/sand.wav" id="5_g6rhu"]
 
 [sub_resource type="Curve" id="Curve_ghkvk"]
 _data = [Vector2(0, 0), 0.0, 2.85643, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -65,6 +66,19 @@ func _process(_delta: float) -> void:
 	volume_db = move_toward(volume_db, wanted_db, 200.0 * _delta)
 	#if playing and not burning_tire:
 		#stop()
+"
+
+[sub_resource type="GDScript" id="GDScript_vu0fh"]
+script/source = "extends AudioStreamPlayer3D
+
+func _process(delta: float) -> void:
+	var desired_volume = 0.0 if $\"..\".offroad else -60.0
+	volume_db = move_toward(volume_db, desired_volume, delta * 60.0)
+	if volume_db < -50 and playing:
+		stop()
+	if volume_db > -50 and not playing:
+		play()
+		
 "
 
 [node name="AwesomeCar" type="Node3D"]
@@ -131,6 +145,7 @@ debug_shape_thickness = 5
 
 [node name="GroundCheck2" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0218077, -0.63355935, -0.708722)
+collision_mask = 3
 debug_shape_custom_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 debug_shape_thickness = 5
 
@@ -152,3 +167,8 @@ script = SubResource("GDScript_nkyxg")
 [node name="TireScreeching" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_nkyxg")
 script = SubResource("GDScript_g6rhu")
+
+[node name="Offroad" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_g6rhu")
+volume_db = -80.0
+script = SubResource("GDScript_vu0fh")

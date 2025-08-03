@@ -16,19 +16,27 @@ var speed = 0.0
 var grounded:bool = false
 var turn_input:float = 0.0
 var burning_tire:bool = false
+var offroad:bool = true
+
+var disabled:bool = false
 
 func _ready() -> void:
 	body.top_level = true
 
 func _physics_process(_delta: float) -> void:
 	_face_ground_probably(_delta)
+	check_offroad()
 	global_position = body.global_position
 	if grounded:
 		var current_acceleration = acceleration * (top_speed - speed) / top_speed
 		if speed < 0.0:
 			current_acceleration = acceleration * (reverse_speed + speed) / reverse_speed
+		if disabled:
+			current_acceleration = 0.0
 		var input_force = current_acceleration if Input.is_action_pressed("accelerate") else 0.0
 		body.apply_central_force(	global_basis * Vector3.FORWARD * input_force)
+		if offroad:
+			body.linear_velocity *= 0.99
 	var relative_velocity = body.linear_velocity * global_basis
 	drift = relative_velocity.x
 	speed = -relative_velocity.z
@@ -63,6 +71,13 @@ func align_with_y(xform, new_y):
 	xform.basis = xform.basis.orthonormalized()
 	return xform
 
+func check_offroad() -> void:
+	if $GroundCheck2.is_colliding():
+		var collider = $GroundCheck2.get_collider()
+		if collider is CollisionObject3D:
+			offroad = collider.get_collision_layer_value(2)
+			return
+	offroad = false
 
 func _rotate_car(_delta:float) -> void:
 	var turn_axis = Input.get_axis("left", "right")

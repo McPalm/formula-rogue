@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="formula rogue"
-run/main_scene="uid://rmbpgopfknfy"
+run/main_scene="uid://d0pdrstmb5l2e"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://test/icon.svg"
+
+[editor]
+
+movie_writer/movie_file="C:/Users/Palm/Documents/Godot/movies/formula_rogue.avi"
+movie_writer/fps=30
 
 [input]
 

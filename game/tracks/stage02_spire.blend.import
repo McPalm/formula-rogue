@@ -74,11 +74,11 @@ _subresources={
 "PATH:Billboard_001": {
 "mesh_instance/layers": 0
 },
-"PATH:Roadcol": {
-"mesh_instance/layers": 0
-},
 "PATH:Roadvis": {
 "generate/physics": true
+},
+"PATH:Roadwalls": {
+"mesh_instance/layers": 2
 }
 }
 }

@@ -1,4 +1,4 @@
-extends Control
+class_name Card extends Control
 
 signal card_picked()
 

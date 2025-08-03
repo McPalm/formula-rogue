@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cybl2spgo3jmg"
+path="res://.godot/imported/e-melons commercial.wav-9bf22e3477fd0ddbfbeec7c1c7a34163.sample"
+
+[deps]
+
+source_file="res://RACING GAME SFX/VA/e-melons commercial.wav"
+dest_files=["res://.godot/imported/e-melons commercial.wav-9bf22e3477fd0ddbfbeec7c1c7a34163.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

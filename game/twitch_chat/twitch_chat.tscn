@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwmo8rnjxcxm8"]
+
+[ext_resource type="Script" uid="uid://cho0v4sj2dr8s" path="res://game/twitch_chat/twitch_chat.gd" id="1_knxkm"]
+
+[node name="TwitchChat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_knxkm")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -207.0
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[b][color=purple]Here:[/color][/b] comes the spam
+oh its a lot of spam
+it will be wonderful
+it will be great"
+scroll_active = false
+scroll_following = true
+vertical_alignment = 2

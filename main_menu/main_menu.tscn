@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0pdrstmb5l2e"]
+
+[ext_resource type="PackedScene" uid="uid://c7id1mexeggw6" path="res://game/tracks/desert_spire.tscn" id="1_3e5qo"]
+[ext_resource type="Script" uid="uid://d0fxi0jppyeyt" path="res://main_menu/main_menu.gd" id="1_3qwjl"]
+[ext_resource type="PackedScene" uid="uid://ch3xbvx7v8m2o" path="res://main_menu/intro/hammy_intro.tscn" id="2_3qwjl"]
+
+[sub_resource type="GDScript" id="GDScript_3shxk"]
+script/source = "extends Camera3D
+
+func _process(delta: float) -> void:
+	rotation.y += delta / 10.0
+"
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_3qwjl")
+
+[node name="Node3D" parent="." instance=ExtResource("1_3e5qo")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.7431448, 1.1699452e-07, 0.6691306, 0, 1, -1.7484555e-07, -0.6691306, 1.2993557e-07, 0.7431448, 158.9861, 7.5114555, 136.94278)
+fov = 49.5
+script = SubResource("GDScript_3shxk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HammyIntro" parent="CanvasLayer" instance=ExtResource("2_3qwjl")]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -309.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Play!"
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Button" to="." method="play_the_game"]
