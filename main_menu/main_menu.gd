@@ -1,6 +1,7 @@
 extends Node3D
 
 func _ready() -> void:
+	$RallyCarDriveThrough.play("RallyCarDriveThrough")
 	await $CanvasLayer/HammyIntro.completed
 	$CanvasLayer/Control.show()
 

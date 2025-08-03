@@ -1,15 +1,165 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0pdrstmb5l2e"]
+[gd_scene load_steps=16 format=3 uid="uid://d0pdrstmb5l2e"]
 
 [ext_resource type="PackedScene" uid="uid://c7id1mexeggw6" path="res://game/tracks/desert_spire.tscn" id="1_3e5qo"]
 [ext_resource type="Script" uid="uid://d0fxi0jppyeyt" path="res://main_menu/main_menu.gd" id="1_3qwjl"]
 [ext_resource type="PackedScene" uid="uid://ch3xbvx7v8m2o" path="res://main_menu/intro/hammy_intro.tscn" id="2_3qwjl"]
+[ext_resource type="Animation" uid="uid://gv7gii6xwk2r" path="res://main_menu/RallyCarDriveThrough.res" id="4_6tl50"]
+[ext_resource type="PackedScene" uid="uid://bhh20qlvhy15d" path="res://game/more_awesome_car/rally_car_01.fbx" id="4_bws42"]
+[ext_resource type="Material" uid="uid://chvl6gup3icq7" path="res://main_menu/intro/DustTrail.tres" id="5_3f7m4"]
+[ext_resource type="AudioStream" uid="uid://bc2km82t7mp68" path="res://RACING GAME SFX/SFX/engineloop.wav" id="7_t6bnd"]
+[ext_resource type="AudioStream" uid="uid://0ulss3r1vj63" path="res://RACING GAME SFX/OST/gameplayintro.mp3" id="8_ia84y"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_6tl50"]
 
 [sub_resource type="GDScript" id="GDScript_3shxk"]
 script/source = "extends Camera3D
 
 func _process(delta: float) -> void:
-	rotation.y += delta / 10.0
+	pass
+	#rotation.y += delta / 10.0
 "
+
+[sub_resource type="Animation" id="Animation_3f7m4"]
+length = 13.0
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(206.986, 12.723, 136.943)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.7484555e-07, 0.7330383, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Path3D/PathFollow3D/Node3D/rally_car_01/trailDust:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Path3D/PathFollow3D/Node3D/rally_car_01/trailDust:process_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera3D/CanvasLayer/ColorRect:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Path3D/PathFollow3D/Node3D/rally_car_01/EngineNoise1:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Path3D/PathFollow3D/Node3D/rally_car_01/EngineNoise1:volume_db")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [20.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6tl50"]
+_data = {
+&"RESET": SubResource("Animation_3f7m4"),
+&"RallyCarDriveThrough": ExtResource("4_6tl50")
+}
+
+[sub_resource type="Curve3D" id="Curve3D_bws42"]
+_data = {
+"points": PackedVector3Array(-35.360207, 5.991667, -122.89792, 0, 0, 0, 38.55548, 8.863525, -18.78245, -15.507286, 0.36139774, -22.272377, 15.507286, -0.36139774, 22.272377, 95.60108, 3.6161127, 97.16055, -2.141449, 0.18649769, -0.17982483, 2.141449, -0.18649769, 0.17982483, 153.15218, 1.5714703, 132.43282),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bws42"]
+albedo_color = Color(0.99999994, 0.8431733, 0.7340791, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ia84y"]
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_3qwjl")
@@ -17,13 +167,25 @@ script = ExtResource("1_3qwjl")
 [node name="Node3D" parent="." instance=ExtResource("1_3e5qo")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.7431448, 1.1699452e-07, 0.6691306, 0, 1, -1.7484555e-07, -0.6691306, 1.2993557e-07, 0.7431448, 158.9861, 7.5114555, 136.94278)
+transform = Transform3D(0.74314475, 1.16994514e-07, 0.66913056, 0, 1, -1.7484554e-07, -0.66913056, 1.2993557e-07, 0.74314475, 206.986, 12.723, 136.943)
+attributes = SubResource("CameraAttributesPractical_6tl50")
 fov = 49.5
 script = SubResource("GDScript_3shxk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
+
+[node name="ColorRect" type="ColorRect" parent="Camera3D/CanvasLayer"]
+anchors_preset = -1
+offset_right = 1148.0
+offset_bottom = 653.0
+color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HammyIntro" parent="CanvasLayer" instance=ExtResource("2_3qwjl")]
+anchors_preset = -1
+offset_right = 272.0
+offset_bottom = 177.0
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 visible = false
@@ -48,5 +210,44 @@ alignment = 1
 [node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 layout_mode = 2
 text = "Play!"
+
+[node name="RallyCarDriveThrough" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6tl50")
+}
+autoplay = "RallyCarDriveThrough"
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_bws42")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-0.91401005, 0.019304989, -0.40486467, 0, 0.9987097, 0.0476229, 0.40531853, 0.04353355, -0.9129866, 38.55548, 8.863525, -18.78245)
+loop = false
+
+[node name="Node3D" type="Node3D" parent="Path3D/PathFollow3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="rally_car_01" parent="Path3D/PathFollow3D/Node3D" instance=ExtResource("4_bws42")]
+transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, 0, 9.313226e-10, 0.99999994, 0, 0, 0)
+
+[node name="trailDust" type="GPUParticles3D" parent="Path3D/PathFollow3D/Node3D/rally_car_01"]
+transform = Transform3D(1.0000004, -1.9557774e-08, -2.2351742e-08, 9.778887e-09, 1, 0, -7.450581e-09, 3.7252903e-09, 1.0000004, -1.863678, -0.30573845, 0.16848755)
+material_override = SubResource("StandardMaterial3D_bws42")
+amount = 64
+lifetime = 3.0
+process_material = ExtResource("5_3f7m4")
+draw_pass_1 = SubResource("SphereMesh_ia84y")
+
+[node name="EngineNoise1" type="AudioStreamPlayer3D" parent="Path3D/PathFollow3D/Node3D/rally_car_01"]
+transform = Transform3D(0.9928967, -0.08647086, 0.083376855, 0.0830086, 0.9957248, 0.044163555, -0.086827226, -0.03692371, 0.9956912, -162.97021, -20.126402, -118.50636)
+stream = ExtResource("7_t6bnd")
+volume_db = 20.0
+pitch_scale = 1.23
+autoplay = true
+max_distance = 2000.0
+doppler_tracking = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ia84y")
 
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Button" to="." method="play_the_game"]
