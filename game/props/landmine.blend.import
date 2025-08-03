@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dw0u6usslor44"
-path="res://.godot/imported/stage02_spire.blend-cad835b0182dab64ac18189454cac5a7.scn"
+uid="uid://c10fl38tc2vio"
+path="res://.godot/imported/landmine.blend-103f83be075673e27f239dcc26c2e4af.scn"
 
 [deps]
 
-source_file="res://game/tracks/stage02_spire.blend"
-dest_files=["res://.godot/imported/stage02_spire.blend-cad835b0182dab64ac18189454cac5a7.scn"]
+source_file="res://game/props/landmine.blend"
+dest_files=["res://.godot/imported/landmine.blend-103f83be075673e27f239dcc26c2e4af.scn"]
 
 [params]
 
@@ -39,51 +39,15 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"Billboard": {
+"Blinker": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://game/materials/billboard.tres",
-"use_external/path": "uid://b18yuih7whodu"
+"use_external/fallback_path": "res://game/materials/BlinkerRed.tres",
+"use_external/path": "uid://isuqj2j7lhyg"
 },
-"Cactus": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://game/materials/cactus.tres",
-"use_external/path": "uid://cx10xi4tmlup7"
-},
-"Checkered": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://game/materials/Checkers.tres",
-"use_external/path": "uid://cw88cyo73fxxr"
-},
-"Road": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://game/materials/road.tres",
-"use_external/path": "uid://csrhi64gc3ba2"
-},
-"Sandstone": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://game/materials/sand.tres",
-"use_external/path": "uid://s0xlknwbpwp7"
-},
-"Trim_Metal": {
+"Metal": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://game/materials/trim_metal.tres",
 "use_external/path": "uid://ckgji48cfmaef"
-},
-"Trim_Metal_trans": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://game/materials/trim_metal_trans.tres",
-"use_external/path": "uid://buiadqt0prlqi"
-}
-},
-"nodes": {
-"PATH:Billboard_001": {
-"mesh_instance/layers": 0
-},
-"PATH:Roadvis": {
-"generate/physics": true
-},
-"PATH:Roadwalls": {
-"mesh_instance/layers": 2
 }
 }
 }
@@ -93,7 +57,7 @@ blender/nodes/punctual_lights=true
 blender/nodes/cameras=true
 blender/nodes/custom_properties=true
 blender/nodes/modifiers=1
-blender/meshes/colors=true
+blender/meshes/colors=false
 blender/meshes/uvs=true
 blender/meshes/normals=true
 blender/meshes/export_geometry_nodes_instances=false
@@ -105,4 +69,4 @@ blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
-gltf/naming_version=0
+gltf/naming_version=2

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cw88cyo73fxxr"]
+
+[ext_resource type="Shader" uid="uid://b04lsg2k78js1" path="res://game/materials/shaders/unlit.tres" id="1_psjtl"]
+[ext_resource type="Texture2D" uid="uid://xpsa0xa0px8y" path="res://game/textures/Checkers.png" id="2_psjtl"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_psjtl")
+shader_parameter/Texture_Base = ExtResource("2_psjtl")
