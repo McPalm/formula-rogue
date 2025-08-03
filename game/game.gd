@@ -23,6 +23,7 @@ func _ready() -> void:
 func set_ice_physics(_active:bool) -> void:
 	$AwesomeCar.grip = 2.0 if _active else 8.0
 	$AwesomeCar.turn_speed = 2.0 if _active else 1.0
+	$AwesomeCar.SetRain(_active)
 
 func generate_checkpoints() -> void:
 	checkpoints = []

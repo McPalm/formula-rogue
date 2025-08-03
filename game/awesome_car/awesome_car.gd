@@ -113,3 +113,6 @@ func _rotate_car(_delta:float) -> void:
 func set_tire_angle(_angle:float) -> void:
 	model.get_node("rally_car_02/car_body/wheel_front_left").rotation.z = _angle
 	model.get_node("rally_car_02/car_body/wheel_front_right").rotation.z = _angle
+
+func SetRain(enable:bool):
+	$RainParticles.emitting = enable

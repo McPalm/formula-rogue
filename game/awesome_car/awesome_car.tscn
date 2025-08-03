@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bb6brj2g75xu7"]
+[gd_scene load_steps=18 format=3 uid="uid://bb6brj2g75xu7"]
 
 [ext_resource type="Script" uid="uid://dowegdgsahh22" path="res://game/awesome_car/awesome_car.gd" id="1_ig06s"]
 [ext_resource type="PackedScene" uid="uid://bhh20qlvhy15d" path="res://game/more_awesome_car/rally_car_01.fbx" id="3_ol8ve"]
@@ -80,6 +80,21 @@ func _process(delta: float) -> void:
 		play()
 		
 "
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6rhu"]
+albedo_color = Color(0.56867325, 0.7722626, 1, 1)
+billboard_mode = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g6rhu"]
+emission_shape = 3
+emission_box_extents = Vector3(500, 1, 500)
+gravity = Vector3(0, -78.4, 0)
+scale_min = 0.5
+scale_max = 1.5
+turbulence_noise_scale = 0.265
+
+[sub_resource type="QuadMesh" id="QuadMesh_vu0fh"]
+size = Vector2(0.1, 1)
 
 [node name="AwesomeCar" type="Node3D"]
 script = ExtResource("1_ig06s")
@@ -172,3 +187,16 @@ script = SubResource("GDScript_g6rhu")
 stream = ExtResource("5_g6rhu")
 volume_db = -80.0
 script = SubResource("GDScript_vu0fh")
+
+[node name="RainParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31.876356, -50)
+material_override = SubResource("StandardMaterial3D_g6rhu")
+cast_shadow = 0
+ignore_occlusion_culling = true
+emitting = false
+amount = 40960
+lifetime = 3.0
+randomness = 1.0
+visibility_aabb = AABB(-1000, -1000, -1000, 1000, 1000, 1000)
+process_material = SubResource("ParticleProcessMaterial_g6rhu")
+draw_pass_1 = SubResource("QuadMesh_vu0fh")

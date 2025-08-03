@@ -1,0 +1,37 @@
+[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://6dni08j6h06l"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_3erp3"]
+constant = Color(1, 0.34419835, 0.3003429, 1)
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_x0rvd"]
+constant = Color(0, 17.694862, 18.892157, 1)
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_r8bkq"]
+input_name = "color"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+
+void light() {
+// ColorConstant:2
+	vec4 n_out2p0 = vec4(1.000000, 0.344198, 0.300343, 1.000000);
+
+
+// Output:0
+	DIFFUSE_LIGHT = vec3(n_out2p0.xyz);
+
+
+}
+"
+nodes/vertex/0/position = Vector2(440, 180)
+nodes/vertex/2/node = SubResource("VisualShaderNodeColorConstant_x0rvd")
+nodes/vertex/2/position = Vector2(120, 360)
+nodes/vertex/3/node = SubResource("VisualShaderNodeInput_r8bkq")
+nodes/vertex/3/position = Vector2(20, 220)
+nodes/light/2/node = SubResource("VisualShaderNodeColorConstant_3erp3")
+nodes/light/2/position = Vector2(195.38516, 152.27066)
+nodes/light/connections = PackedInt32Array(2, 0, 0, 0)
