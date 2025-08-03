@@ -5,4 +5,4 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_dv6nt")
-shader_parameter/SeedMult = 2.404999999998836
+shader_parameter/SeedMult = 2.0
