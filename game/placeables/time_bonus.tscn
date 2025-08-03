@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqyrft23nt51h"]
 
-[ext_resource type="Texture2D" uid="uid://br7l0hg2o252n" path="res://test/icon.svg" id="1_pjfjr"]
+[ext_resource type="Texture2D" uid="uid://bn5043ourrg0m" path="res://game/placeables/clock.png" id="1_pjfjr"]
 
 [sub_resource type="GDScript" id="GDScript_pjfjr"]
 script/source = "extends Placeable

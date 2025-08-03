@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://rmbpgopfknfy"]
+[gd_scene load_steps=24 format=3 uid="uid://rmbpgopfknfy"]
 
 [ext_resource type="Script" uid="uid://c47hyk8bk42yr" path="res://game/game.gd" id="1_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://c7id1mexeggw6" path="res://game/tracks/desert_spire.tscn" id="1_h7iqs"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://cehrgsb32wwt" path="res://RACING GAME SFX/SFX/readysetgo.wav" id="9_vsp63"]
 [ext_resource type="Script" uid="uid://bqeg7xyn0lefe" path="res://game/bomb.gd" id="10_j8tme"]
 [ext_resource type="Script" uid="uid://cieh4atdpvpc5" path="res://game/add_read.gd" id="11_3vho3"]
+[ext_resource type="AudioStream" uid="uid://dhhbx0cbg8y1u" path="res://RACING GAME SFX/SFX/39.wav" id="15_ee6o4"]
 
 [sub_resource type="GDScript" id="GDScript_dakft"]
 script/source = "extends Control
@@ -290,6 +291,9 @@ script = ExtResource("7_u5opy")
 
 [node name="Bomb" type="Node" parent="."]
 script = ExtResource("10_j8tme")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Bomb"]
+stream = ExtResource("15_ee6o4")
 
 [node name="AddRead" type="Node" parent="."]
 script = ExtResource("11_3vho3")

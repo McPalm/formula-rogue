@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dhhbx0cbg8y1u"
+path="res://.godot/imported/39.wav-32e344eff35d73b8e78c50648d3b1adc.sample"
+
+[deps]
+
+source_file="res://RACING GAME SFX/SFX/39.wav"
+dest_files=["res://.godot/imported/39.wav-32e344eff35d73b8e78c50648d3b1adc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

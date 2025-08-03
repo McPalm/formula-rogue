@@ -20,3 +20,4 @@ func _process(delta: float) -> void:
 static func add_time(time:float) -> void:
 	instance.time_left += time
 	instance.time_added.emit(time)
+	instance.get_node("AudioStreamPlayer").play()

@@ -10,8 +10,12 @@
 script/source = "extends Node
 
 func _ready() -> void:
-	create_tween().tween_property($CanvasLayer/Control/ColorRect2, \"color\", Color(.16,.16,.16,0), 1.5)
+	
+	await get_tree().create_timer(0.5).timeout
+	$AudioStreamPlayer.play()
+	await create_tween().tween_property($CanvasLayer/Control/ColorRect2, \"color\", Color(.16,.16,.16,0), 1.5).finished
 	await $AudioStreamPlayer.finished
+	await create_tween().tween_property($CanvasLayer/Control/ColorRect2, \"color\", Color(.16, .16, .16, 1.0), 0.5).finished
 	get_tree().change_scene_to_file(\"res://main_menu/main_menu.tscn\")
 "
 
@@ -67,7 +71,6 @@ color = Color(0.1656564, 0.16565642, 0.1656564, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_13jq6")
-autoplay = true
 
 [node name="Node3D" type="Node3D" parent="."]
 

@@ -58,7 +58,7 @@ func _process(_delta: float) -> void:
 script/source = "extends AudioStreamPlayer3D
 
 func _process(delta: float) -> void:
-	var desired_volume = -10 if $\"..\".offroad else -60.0
+	var desired_volume = -15.0 if $\"..\".offroad else -60.0
 	volume_db = move_toward(volume_db, desired_volume, delta * 300.0)
 	if volume_db < -50 and playing:
 		stop()

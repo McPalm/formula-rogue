@@ -37,8 +37,9 @@ func run_effect(effect:StringName) -> void:
 		&"Mines":
 			$"../../ItemPlacer".place_mine(10)
 		&"Add Read":
-			$"../../AddRead"._read_add()
 			possible_effects.erase(&"Add Read")
+			await get_tree().create_timer(5.0).timeout
+			$"../../AddRead"._read_add()
 		&"Barrels":
 			$"../../ItemPlacer".place_barrel(15)
 		&"Ramps":
