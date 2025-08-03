@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bt6oci74d8jqn"
+path="res://.godot/imported/victoryintro.mp3-9206d1256611fa95672f3fa65bf24105.mp3str"
+
+[deps]
+
+source_file="res://RACING GAME SFX/OST/victoryintro.mp3"
+dest_files=["res://.godot/imported/victoryintro.mp3-9206d1256611fa95672f3fa65bf24105.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

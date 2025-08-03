@@ -1,26 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://bb6brj2g75xu7"]
+[gd_scene load_steps=16 format=3 uid="uid://bb6brj2g75xu7"]
 
 [ext_resource type="Script" uid="uid://dowegdgsahh22" path="res://game/awesome_car/awesome_car.gd" id="1_ig06s"]
+[ext_resource type="Material" uid="uid://uhbwp88ttruc" path="res://game/awesome_car/tire_burn_particles.tres" id="3_cfhhq"]
 [ext_resource type="PackedScene" uid="uid://bhh20qlvhy15d" path="res://game/more_awesome_car/rally_car_01.fbx" id="3_ol8ve"]
 [ext_resource type="AudioStream" uid="uid://bc2km82t7mp68" path="res://RACING GAME SFX/SFX/engineloop.wav" id="3_qqaaj"]
 [ext_resource type="AudioStream" uid="uid://bqo62j244m6nt" path="res://RACING GAME SFX/SFX/drift.wav" id="4_nkyxg"]
 [ext_resource type="AudioStream" uid="uid://cwqecnq0j5553" path="res://RACING GAME SFX/SFX/sand.wav" id="5_g6rhu"]
-
-[sub_resource type="Curve" id="Curve_ghkvk"]
-_data = [Vector2(0, 0), 0.0, 2.85643, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_afpqb"]
-curve = SubResource("Curve_ghkvk")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qqaaj"]
-inherit_velocity_ratio = 0.8
-direction = Vector3(0, 1, 0)
-spread = 13.889
-initial_velocity_min = 3.0
-initial_velocity_max = 3.0
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_afpqb")
+[ext_resource type="Material" uid="uid://1asy1xbsqvpc" path="res://game/awesome_car/rain_particles.tres" id="7_fk8jr"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_nkyxg"]
 radius = 0.3
@@ -85,14 +71,6 @@ func _process(delta: float) -> void:
 albedo_color = Color(0.56867325, 0.7722626, 1, 1)
 billboard_mode = 2
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g6rhu"]
-emission_shape = 3
-emission_box_extents = Vector3(500, 1, 500)
-gravity = Vector3(0, -78.4, 0)
-scale_min = 0.5
-scale_max = 1.5
-turbulence_noise_scale = 0.265
-
 [sub_resource type="QuadMesh" id="QuadMesh_vu0fh"]
 size = Vector2(0.1, 1)
 
@@ -111,7 +89,7 @@ emitting = false
 amount = 256
 lifetime = 0.2
 randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_qqaaj")
+process_material = ExtResource("3_cfhhq")
 draw_pass_1 = SubResource("SphereMesh_nkyxg")
 
 [node name="left_rear_particle" type="GPUParticles3D" parent="MeshInstance3D"]
@@ -120,7 +98,7 @@ emitting = false
 amount = 256
 lifetime = 0.2
 randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_qqaaj")
+process_material = ExtResource("3_cfhhq")
 draw_pass_1 = SubResource("SphereMesh_nkyxg")
 
 [node name="left_front_particle" type="GPUParticles3D" parent="MeshInstance3D"]
@@ -129,7 +107,7 @@ emitting = false
 amount = 256
 lifetime = 0.2
 randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_qqaaj")
+process_material = ExtResource("3_cfhhq")
 draw_pass_1 = SubResource("SphereMesh_nkyxg")
 
 [node name="right_front_particle" type="GPUParticles3D" parent="MeshInstance3D"]
@@ -138,7 +116,7 @@ emitting = false
 amount = 256
 lifetime = 0.2
 randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_qqaaj")
+process_material = ExtResource("3_cfhhq")
 draw_pass_1 = SubResource("SphereMesh_nkyxg")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
@@ -198,5 +176,5 @@ amount = 40960
 lifetime = 3.0
 randomness = 1.0
 visibility_aabb = AABB(-1000, -1000, -1000, 1000, 1000, 1000)
-process_material = SubResource("ParticleProcessMaterial_g6rhu")
+process_material = ExtResource("7_fk8jr")
 draw_pass_1 = SubResource("QuadMesh_vu0fh")

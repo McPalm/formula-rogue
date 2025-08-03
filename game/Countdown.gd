@@ -2,6 +2,7 @@ extends Control
 
 func start_countdown() -> void:
 	show()
+	$ReadySetGo.play()
 	$Timer.start()
 	$Label.text = "3"
 	await $Timer.timeout

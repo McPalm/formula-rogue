@@ -1,15 +1,18 @@
-[gd_scene load_steps=20 format=3 uid="uid://rmbpgopfknfy"]
+[gd_scene load_steps=23 format=3 uid="uid://rmbpgopfknfy"]
 
 [ext_resource type="Script" uid="uid://c47hyk8bk42yr" path="res://game/game.gd" id="1_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://c7id1mexeggw6" path="res://game/tracks/desert_spire.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://bb6brj2g75xu7" path="res://game/awesome_car/awesome_car.tscn" id="1_l1rk1"]
 [ext_resource type="Script" uid="uid://bx46sgnh2rkgb" path="res://game/camera.gd" id="3_4fuuu"]
 [ext_resource type="AudioStream" uid="uid://ceuvajuir7pwr" path="res://RACING GAME SFX/OST/gameplayloop.mp3" id="4_4fuuu"]
+[ext_resource type="AudioStream" uid="uid://bt6oci74d8jqn" path="res://RACING GAME SFX/OST/victoryintro.mp3" id="6_hb504"]
 [ext_resource type="Script" uid="uid://db65wkqejedy" path="res://game/roguelike/pick_your_modifier.gd" id="6_y36n6"]
+[ext_resource type="AudioStream" uid="uid://dwnhvtm451nq1" path="res://RACING GAME SFX/OST/victoryloop.mp3" id="7_ee6o4"]
 [ext_resource type="PackedScene" uid="uid://dg0avi4in0581" path="res://game/roguelike/card.tscn" id="7_l8g03"]
 [ext_resource type="Script" uid="uid://ddiit6pcy0flw" path="res://game/item_placer.gd" id="7_u5opy"]
 [ext_resource type="Script" uid="uid://bn5u0rspnrus2" path="res://game/Countdown.gd" id="8_l8g03"]
 [ext_resource type="PackedScene" uid="uid://cwmo8rnjxcxm8" path="res://game/twitch_chat/twitch_chat.tscn" id="9_qf6n1"]
+[ext_resource type="AudioStream" uid="uid://cehrgsb32wwt" path="res://RACING GAME SFX/SFX/readysetgo.wav" id="9_vsp63"]
 [ext_resource type="Script" uid="uid://bqeg7xyn0lefe" path="res://game/bomb.gd" id="10_j8tme"]
 [ext_resource type="Script" uid="uid://cieh4atdpvpc5" path="res://game/add_read.gd" id="11_3vho3"]
 
@@ -114,6 +117,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0532112, 0)
 process_mode = 3
 stream = ExtResource("4_4fuuu")
 bus = &"Music"
+
+[node name="Victory" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("6_hb504")
+
+[node name="VictoryLoop" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("7_ee6o4")
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -248,6 +257,9 @@ text = "3"
 label_settings = SubResource("LabelSettings_l8g03")
 
 [node name="Timer" type="Timer" parent="UI/Countdown"]
+
+[node name="ReadySetGo" type="AudioStreamPlayer" parent="UI/Countdown"]
+stream = ExtResource("9_vsp63")
 
 [node name="BombTimer" type="Control" parent="UI"]
 layout_mode = 3

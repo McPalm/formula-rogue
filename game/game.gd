@@ -3,7 +3,7 @@ var checkpoints:Array[Vector3]
 @onready var car:Node3D = $AwesomeCar
 var current_cp:int = 0
 var current_lap:int = 0
-var winning_lap:int = 7
+var winning_lap:int = 2
 
 signal lap_finished(next_lap)
 signal on_game_over()
@@ -82,5 +82,8 @@ func win() -> void:
 	$Bomb.queue_free()
 	$music.stop()
 	$UI/Lap._show_message("WINNER!")
-	await get_tree().create_timer(5.0).timeout
+	$music/Victory.play()
+	await $music/Victory.finished
+	$music/VictoryLoop.play()
+	await get_tree().create_timer(8.0).timeout
 	get_tree().change_scene_to_file("res://main_menu/main_menu.tscn")

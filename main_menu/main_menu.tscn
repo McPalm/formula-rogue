@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bhh20qlvhy15d" path="res://game/more_awesome_car/rally_car_01.fbx" id="4_bws42"]
 [ext_resource type="Material" uid="uid://chvl6gup3icq7" path="res://main_menu/intro/DustTrail.tres" id="5_3f7m4"]
 [ext_resource type="AudioStream" uid="uid://bc2km82t7mp68" path="res://RACING GAME SFX/SFX/engineloop.wav" id="7_t6bnd"]
-[ext_resource type="AudioStream" uid="uid://0ulss3r1vj63" path="res://RACING GAME SFX/OST/gameplayintro.mp3" id="8_ia84y"]
+[ext_resource type="AudioStream" uid="uid://3nvqwkev1sgc" path="res://RACING GAME SFX/OST/mainmenuintro.mp3" id="8_ia84y"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_6tl50"]
 
