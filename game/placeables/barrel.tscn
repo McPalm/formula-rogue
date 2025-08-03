@@ -1,14 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://dv0g5dusn8ev8"]
 
 [ext_resource type="Script" uid="uid://2hi5s8w3n1gq" path="res://game/placeables/placeable.gd" id="1_4rl1e"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_bu408"]
-top_radius = 1.0
-bottom_radius = 1.0
-height = 3.0
+[ext_resource type="PackedScene" uid="uid://cjs3au1ewciru" path="res://game/props/barrel.blend" id="2_bu408"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vj4eq"]
-radius = 1.0
 
 [node name="Barrel" type="Node3D"]
 script = ExtResource("1_4rl1e")
@@ -20,8 +15,9 @@ collision_mask = 51
 mass = 0.363
 can_sleep = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-mesh = SubResource("CylinderMesh_bu408")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1.4, 0, 0, 0, 1, 0, 0, 0, 1.4, 0, 0, 0)
 shape = SubResource("CylinderShape3D_vj4eq")
+
+[node name="barrel" parent="RigidBody3D" instance=ExtResource("2_bu408")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

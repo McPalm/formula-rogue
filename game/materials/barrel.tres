@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://itr0gl3gewje"]
+
+[ext_resource type="Shader" uid="uid://b04lsg2k78js1" path="res://game/materials/shaders/unlit.tres" id="1_o7d2u"]
+[ext_resource type="Texture2D" uid="uid://bjph2cvxoiavi" path="res://game/textures/barrel.png" id="2_o7d2u"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_o7d2u")
+shader_parameter/Texture_Base = ExtResource("2_o7d2u")
