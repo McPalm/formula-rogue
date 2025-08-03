@@ -49,6 +49,11 @@ _subresources={
 "use_external/fallback_path": "res://game/materials/cactus.tres",
 "use_external/path": "uid://cx10xi4tmlup7"
 },
+"Checkered": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://game/materials/Checkers.tres",
+"use_external/path": "uid://cw88cyo73fxxr"
+},
 "Road": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://game/materials/road.tres",
@@ -72,9 +77,6 @@ _subresources={
 },
 "nodes": {
 "PATH:Billboard_001": {
-"mesh_instance/layers": 0
-},
-"PATH:Roadcol": {
 "mesh_instance/layers": 0
 },
 "PATH:Roadvis": {
